@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjxxjp18q6ra4"]
+
+[ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="1_fghjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fghjm"]
+size = Vector2(499.5, 43)
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_fghjm")]
+position = Vector2(251, 307)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -2.0
+offset_top = 357.0
+offset_right = 506.0
+offset_bottom = 402.0
+color = Color(0.5894964, 0.35115573, 0.44335625, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(250.25, 378.5)
+shape = SubResource("RectangleShape2D_fghjm")
+debug_color = Color(0.7387652, 0.37190515, 0.73216456, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(251, 201)
+limit_left = 0
+limit_top = 0
+limit_right = 500
+limit_bottom = 400
