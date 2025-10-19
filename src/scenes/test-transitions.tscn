@@ -30,10 +30,3 @@ color = Color(0, 0.5295888, 0.14019296, 1)
 position = Vector2(250.25, 378.5)
 shape = SubResource("RectangleShape2D_fghjm")
 debug_color = Color(0.7387652, 0.37190515, 0.73216456, 0.41960785)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(251, 201)
-limit_left = 0
-limit_top = 0
-limit_right = 500
-limit_bottom = 400

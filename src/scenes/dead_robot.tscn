@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://0yxxjutc1sjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmy4"]
+size = Vector2(32, 16)
+
+[node name="DeadRobot" type="Sprite2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(16, 8)
+shape = SubResource("RectangleShape2D_7vmy4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 32.0
+offset_bottom = 16.0

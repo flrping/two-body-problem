@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjxxjp18q6ra4"]
+[gd_scene load_steps=7 format=3 uid="uid://bjxxjp18q6ra4"]
 
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="1_bl13t"]
 [ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="1_fghjm"]
 [ext_resource type="PackedScene" uid="uid://bjnvryfbfpnb7" path="res://scenes/platform.tscn" id="3_iyx0m"]
 [ext_resource type="PackedScene" uid="uid://cgsr5tfvs7js4" path="res://scenes/test_hazard.tscn" id="4_74lek"]
+[ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="5_j5jx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fghjm"]
-size = Vector2(499.5, 43)
+size = Vector2(1462, 43)
 
 [node name="Test" type="Node2D"]
 
@@ -17,7 +18,7 @@ target = "res://scenes/test-transitions.tscn"
 metadata/to = "test-transitions"
 
 [node name="Player" parent="." instance=ExtResource("1_fghjm")]
-position = Vector2(52, 312)
+position = Vector2(60, 325)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -29,7 +30,7 @@ offset_bottom = 402.0
 color = Color(0.5894964, 0.35115573, 0.44335625, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(250.25, 378.5)
+position = Vector2(573, 378.5)
 shape = SubResource("RectangleShape2D_fghjm")
 debug_color = Color(0.7387652, 0.37190515, 0.73216456, 0.41960785)
 
@@ -59,3 +60,6 @@ position = Vector2(911, 209)
 
 [node name="TestHazard4" parent="." instance=ExtResource("4_74lek")]
 position = Vector2(259, 317)
+
+[node name="Spawn" parent="." instance=ExtResource("5_j5jx5")]
+position = Vector2(59, 268)
