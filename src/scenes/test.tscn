@@ -11,7 +11,7 @@ size = Vector2(499.5, 43)
 [node name="Test" type="Node2D"]
 
 [node name="Transition" parent="." instance=ExtResource("1_bl13t")]
-position = Vector2(393, 325)
+position = Vector2(1109, 102.99997)
 scale = Vector2(12.49, 12.49)
 target = "res://scenes/test-transitions.tscn"
 metadata/to = "test-transitions"
@@ -24,7 +24,7 @@ position = Vector2(52, 312)
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
 offset_left = -2.0
 offset_top = 357.0
-offset_right = 506.0
+offset_right = 1202.0
 offset_bottom = 402.0
 color = Color(0.5894964, 0.35115573, 0.44335625, 1)
 
@@ -33,21 +33,29 @@ position = Vector2(250.25, 378.5)
 shape = SubResource("RectangleShape2D_fghjm")
 debug_color = Color(0.7387652, 0.37190515, 0.73216456, 0.41960785)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(251, 201)
-limit_left = 0
-limit_top = 0
-limit_right = 500
-limit_bottom = 400
-
 [node name="Platform" parent="." instance=ExtResource("3_iyx0m")]
-position = Vector2(92, 296)
+position = Vector2(372, 273)
 
 [node name="Platform2" parent="." instance=ExtResource("3_iyx0m")]
-position = Vector2(271, 255)
+position = Vector2(783, 209)
 
 [node name="TestHazard" parent="." instance=ExtResource("4_74lek")]
-position = Vector2(75, 185)
+position = Vector2(179, 317)
 
 [node name="TestHazard2" parent="." instance=ExtResource("4_74lek")]
-position = Vector2(376, 151)
+position = Vector2(139, 317)
+
+[node name="TestHazard3" parent="." instance=ExtResource("4_74lek")]
+position = Vector2(219, 317)
+
+[node name="Platform3" parent="." instance=ExtResource("3_iyx0m")]
+position = Vector2(570, 211)
+
+[node name="Platform4" parent="." instance=ExtResource("3_iyx0m")]
+position = Vector2(1046, 147)
+
+[node name="Platform5" parent="." instance=ExtResource("3_iyx0m")]
+position = Vector2(911, 209)
+
+[node name="TestHazard4" parent="." instance=ExtResource("4_74lek")]
+position = Vector2(259, 317)
