@@ -23,12 +23,15 @@ func _physics_process(delta: float) -> void:
 	
 	if direction:
 		if velocity.x == 0:
-			run_transition_counter = 40
+			run_transition_counter = 0.07
 			animation.play("run_start")
 			
 		velocity.x = direction * SPEED
 		
-		animation.play("run")
+		if run_transition_counter > 0:
+			run_transition_counter -= delta
+		else:
+			animation.play("run")
 		
 		if velocity.x < 0:
 			animation.flip_h = true
