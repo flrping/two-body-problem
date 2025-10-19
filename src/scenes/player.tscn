@@ -170,7 +170,7 @@ animations = [{
 radius = 16.0
 height = 56.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_xo3ru")
 
 [node name="ColorRect" type="ColorRect" parent="."]

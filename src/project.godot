@@ -21,6 +21,10 @@ window/size/viewport_width=500
 window/size/viewport_height=400
 window/stretch/mode="viewport"
 
+[global_group]
+
+Player=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

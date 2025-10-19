@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjxxjp18q6ra4"]
+[gd_scene load_steps=6 format=3 uid="uid://bjxxjp18q6ra4"]
 
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="1_bl13t"]
 [ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="1_fghjm"]
 [ext_resource type="PackedScene" uid="uid://bjnvryfbfpnb7" path="res://scenes/platform.tscn" id="3_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://cgsr5tfvs7js4" path="res://scenes/test_hazard.tscn" id="4_74lek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fghjm"]
 size = Vector2(499.5, 43)
@@ -44,3 +45,9 @@ position = Vector2(92, 296)
 
 [node name="Platform2" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(271, 255)
+
+[node name="TestHazard" parent="." instance=ExtResource("4_74lek")]
+position = Vector2(75, 185)
+
+[node name="TestHazard2" parent="." instance=ExtResource("4_74lek")]
+position = Vector2(376, 151)
