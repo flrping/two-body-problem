@@ -2,10 +2,9 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
 const JUMP_VELOCITY = -450.0
-
-#the amount of extra   to remove when the jump button is not held
+const MAX_VELOCITY = 800
+#the amount of extra velocity to remove when the jump button is not held
 const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
@@ -13,21 +12,20 @@ const FALL_TIGHTNESS = 20;
 var run_transition_counter = 0;
 var has_jumped = false
 var is_holding_jump_key = false
-var real_velocity = Vector2(0,0)
+var real_velocity = Vector2(0,0) #'actual' velocity before modifications are performed at the end
 
-#note: each member is formatted as 'min val, max val, clamp val'
-#ie if the value is between -500 and -300, clamp to -450
-@export var velocity_map := [
-	[-500, -300, -450],
-	[-300, -100 -200],
-	[-100, 0, -50 ]
-] 
+var velocity_multipliers := [
+	[-1000, -300, 1.4],
+	[-300, 0, 0.8],
+	[0, 100, 1.5],
+	[100, 10000, 1.7]
+]
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		has_jumped = true
-		real_velocity += get_gravity() * delta
+		real_velocity += get_gravity() * 1.1 * delta
 	elif has_jumped:
 		has_jumped = false
 
@@ -39,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	if not Input.is_action_pressed("ui_accept"):
 		is_holding_jump_key = false
 	
-	if not is_holding_jump_key and velocity.y < 0:
+	if not is_holding_jump_key and velocity.y < 0: 
 		real_velocity.y += FALL_TIGHTNESS 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -47,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
 	if direction:
+		#run_start animation
 		if real_velocity.x == 0:
 			run_transition_counter = 0.07
 			animation.play("run_start")
@@ -69,13 +68,12 @@ func _physics_process(delta: float) -> void:
 	velocity.x = real_velocity.x
 	velocity.y = real_velocity.y
 	
-	if false:
-		for val in velocity_map:
-			if real_velocity.y >= val[0] and real_velocity.y < val[1]:
-				velocity.y = val[2] 
-	if false:
-		if abs(real_velocity.y) <= 600 and abs(real_velocity.y) >= 300:
-			velocity.y = 600 * sign(real_velocity.y)
-	#print(velocity)
+	for val in velocity_multipliers:
+		if real_velocity.y >= val[0] and real_velocity.y < val[1]:
+			velocity.y *= val[2]
+			break
+		velocity.y = real_velocity.y
+		
+	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
 
 	move_and_slide()
