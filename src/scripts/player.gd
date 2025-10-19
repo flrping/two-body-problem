@@ -7,11 +7,15 @@ const JUMP_VELOCITY = -400.0
 @onready var animation = $AnimatedSprite2D
 
 var run_transition_counter = 0;
+var has_jumped = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
+		has_jumped = true
 		velocity += get_gravity() * delta
+	elif has_jumped:
+		has_jumped = false
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
