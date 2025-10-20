@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var is_alive = true;
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
@@ -8,6 +9,8 @@ const MAX_VELOCITY = 800
 const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
+@onready var spawn = get_tree().current_scene.get_node("Spawn")
+@onready var corpse = preload("res://scenes/dead_robot.tscn")
 
 var run_transition_counter = 0;
 var has_jumped = false
@@ -30,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		has_jumped = false
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and is_alive:
 		real_velocity.y = JUMP_VELOCITY
 		is_holding_jump_key = true
 		
@@ -44,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
-	if direction:
+	if direction and is_alive:
 		#run_start animation
 		if real_velocity.x == 0:
 			run_transition_counter = 0.07
@@ -77,3 +80,11 @@ func _physics_process(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
 
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
+		is_alive = true
+		var _corpse = corpse.instantiate()
+		_corpse.position = position
+		get_tree().current_scene.add_child(_corpse)
+		position = spawn.position
