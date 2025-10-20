@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceo20opnktpu6"]
+
+[ext_resource type="Texture2D" uid="uid://cwhc8hhagpuds" path="res://assets/testing/tileset1-export.png" id="1_yaunf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sns82"]
+texture = ExtResource("1_yaunf")
+36:0/0 = 0
+36:1/0 = 0
+38:1/0 = 0
+39:1/0 = 0
+40:1/0 = 0
+40:0/0 = 0
+41:0/0 = 0
+42:0/0 = 0
+42:1/0 = 0
+43:1/0 = 0
+44:1/0 = 0
+45:1/0 = 0
+45:0/0 = 0
+46:0/0 = 0
+47:0/0 = 0
+47:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2vf6x"]
+sources/0 = SubResource("TileSetAtlasSource_sns82")
+
+[node name="Spikes" type="TileMapLayer"]
+tile_set = SubResource("TileSet_2vf6x")
