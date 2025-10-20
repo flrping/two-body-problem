@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://7q37gfje7d61"]
+[gd_scene load_steps=7 format=4 uid="uid://7q37gfje7d61"]
 
 [ext_resource type="Texture2D" uid="uid://bi8a3cacrc0j4" path="res://tilemap-test.png" id="1_mc4gg"]
 [ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="2_hmu3g"]
+[ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="3_hmu3g"]
+[ext_resource type="PackedScene" uid="uid://ceo20opnktpu6" path="res://assets/tilesets/spikes.tscn" id="4_a62so"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a62so"]
 texture = ExtResource("1_mc4gg")
@@ -24,10 +26,14 @@ sources/1 = SubResource("TileSetAtlasSource_a62so")
 [node name="Player" parent="." instance=ExtResource("2_hmu3g")]
 position = Vector2(159, 284)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(1, 0)
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAsAAQAAAAAAAAABAAsAAQAAAAAAAAACAAsAAQAAAAAAAAADAAsAAQAAAAAAAAAEAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAGAAsAAQAAAAAAAAAHAAsAAQAAAAAAAAAIAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAKAAsAAQAAAAAAAAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAsAAQAAAAAAAAAPAAsAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAAQAAsAAQAAAAAAAAARAAsAAQAAAAAAAAASAAsAAQAAAAEAAAATAAwAAQAAAAEAAAAUAA0AAQAAAAEAAAAWAA8AAQAAAAEAAAAVAA4AAQAAAAEAAAAXABAAAQAAAAEAAAAYABEAAQAAAAEAAAAZABIAAQAAAAEAAAAaABMAAQAAAAEAAAAbABQAAQAAAAAAAAAcABQAAQAAAAAAAAAdABQAAQAAAAAAAAAeABQAAQAAAAAAAAAfABQAAQAAAAAAAAAgABQAAQAAAAAAAAAhABQAAQAAAAAAAAAiABQAAQAAAAAAAAD//wsAAQABAAEAAAD+/wwAAQABAAEAAAD9/w0AAQABAAEAAAD8/w4AAQABAAEAAAD7/w8AAQABAAEAAAD5/xEAAQABAAEAAAD6/xAAAQABAAEAAAD4/xIAAQABAAEAAAD3/xMAAQAAAAAAAAD2/xMAAQAAAAAAAAD1/xMAAQAAAAAAAAD0/xMAAQAAAAAAAADz/xMAAQAAAAAAAADy/xMAAQAAAAAAAADx/xMAAQAAAAAAAADw/xMAAQAAAAAAAADv/xMAAQAAAAAAAADu/xMAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_7dol5")
 collision_visibility_mode = 1
+
+[node name="LevelParts1" parent="." instance=ExtResource("3_hmu3g")]
+tile_map_data = PackedByteArray("AAALAAcAAAAQAAAAAAA=")
+
+[node name="Spikes" parent="." instance=ExtResource("4_a62so")]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AADf/yUAAAAnAAEAAADg/yUAAAAnAAEAAADh/yUAAAAnAAEAAADi/yUAAAAnAAEAAADj/yUAAAAnAAEAAADk/yUAAAAnAAEAAADl/yUAAAAnAAEAAADm/yUAAAAnAAEAAADn/yUAAAAnAAEAAAA=")

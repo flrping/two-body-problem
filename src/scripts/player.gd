@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var is_alive = true;
 
-const SPEED = 300.0
+const SPEED = 380.0
 const JUMP_VELOCITY = -450.0
 const MAX_VELOCITY = 800
 #the amount of extra velocity to remove when the jump button is not held
@@ -88,3 +88,4 @@ func _input(event: InputEvent) -> void:
 		_corpse.position = position
 		get_tree().current_scene.add_child(_corpse)
 		position = spawn.position
+ 
