@@ -17,5 +17,5 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body)
-	var result = get_tree().change_scene_to_packed(targetScene)
-	print(result)
+	#apparently altering the scene tree in a physics callback can cause issues
+	get_tree().call_deferred("change_scene_to_packed", targetScene)
