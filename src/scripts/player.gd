@@ -78,7 +78,6 @@ func _physics_process(delta: float) -> void:
 			break
 		velocity.y = real_velocity.y
 	
-	print(velocity.y)
 	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
 	
 	move_and_slide()
