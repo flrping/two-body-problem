@@ -16,6 +16,7 @@ var run_transition_counter = 0;
 var has_jumped = false
 var is_holding_jump_key = false
 var real_velocity = Vector2(0,0) #'actual' velocity before modifications are performed at the end
+var respawn = false
 
 var velocity_multipliers := [
 	[-1000, -300, 1.4],
@@ -76,14 +77,16 @@ func _physics_process(delta: float) -> void:
 			velocity.y *= val[2]
 			break
 		velocity.y = real_velocity.y
-		
+	
+	print(velocity.y)
 	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
-
+	
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
 		is_alive = true
+		real_velocity = Vector2(0,0)
 		var _corpse = corpse.instantiate()
 		_corpse.position = position
 		get_tree().current_scene.add_child(_corpse)
