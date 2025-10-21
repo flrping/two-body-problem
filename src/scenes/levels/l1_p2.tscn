@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=4 uid="uid://lqh050jvqdn"]
+
+[ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="1_i5obk"]
+[ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="2_iwnf7"]
+[ext_resource type="PackedScene" uid="uid://d1i1g48f4nhrl" path="res://scenes/objects/spike_v.tscn" id="3_eyrno"]
+[ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="3_hrdmc"]
+
+[node name="L1P2" type="Node2D"]
+
+[node name="Spawn" parent="." instance=ExtResource("1_i5obk")]
+
+[node name="LevelParts1" parent="." instance=ExtResource("2_iwnf7")]
+tile_map_data = PackedByteArray("AAD9/wYAAAAgAAAAAAD+/wYAAAAgAAAAAAD//wYAAAAgAAAAAAAAAAYAAAAgAAAAAAABAAYAAAAgAAAAAAACAAYAAAAgAAAAAAD7/wYAAAAgAAAAAAD8/wYAAAAgAAAAAAADAAYAAAAgAAAAAAAEAAYAAAAgAAAAAAAFAAYAAAAgAAAAAAAGAAYAAAAgAAAAAAAHAAYAAAAgAAAAAAAIAAYAAAAgAAAAAAAJAAYAAAAgAAAAAAAKAAYAAAAgAAAAAAALAAYAAAAgAAAAAAA=")
+
+[node name="SpikeV" parent="." instance=ExtResource("3_eyrno")]
+position = Vector2(0, 176)
+
+[node name="Player" parent="." instance=ExtResource("3_hrdmc")]
+position = Vector2(0, -3)
+
+[node name="background elements" parent="." instance=ExtResource("2_iwnf7")]
+tile_map_data = PackedByteArray("AAD5/wAAAAAIAAAAAAD6/wAAAAAKAAAAAAD7/wAAAAAMAAAAAAD8/wAAAAAOAAAAAAD4/wAAAAAGAAAAAAD4/wEAAAAGAAAAAAD4/wIAAAAGAAAAAAD4/wMAAAAGAAAAAAD4/wQAAAAGAAAAAAD4/wUAAAAGAAAAAAD4/wYAAAAGAAAAAAD9/wAAAAAGAAAAAAD9/wEAAAAGAAAAAAD9/wIAAAAGAAAAAAD9/wMAAAAGAAAAAAD9/wQAAAAGAAAAAAD9/wUAAAAGAAAAAAD9/wYAAAAGAAAAAAD9/wcAAAAGAAAAAAD9/wgAAAAGAAAAAAD4/wcAAAAGAAAAAAD4/wgAAAAGAAAAAAA=")
