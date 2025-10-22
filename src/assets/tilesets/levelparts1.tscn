@@ -34,6 +34,7 @@ use_texture_padding = false
 14:0/0 = 0
 32:0/size_in_atlas = Vector2i(2, 2)
 32:0/0 = 0
+32:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:0/size_in_atlas = Vector2i(2, 2)
 2:0/0 = 0
 4:0/size_in_atlas = Vector2i(2, 2)

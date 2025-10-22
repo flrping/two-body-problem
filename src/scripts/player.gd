@@ -16,6 +16,12 @@ var run_transition_counter = 0;
 var has_jumped = false
 var is_holding_jump_key = false
 var real_velocity = Vector2(0,0) #'actual' velocity before modifications are performed at the end
+var disable_inputs = false #disable inputs without enabling respawn
+
+#special event booleans
+var disable_until_landed = false #used in 1st level
+
+signal has_died
 
 var velocity_multipliers := [
 	[-1000, -300, 1.4],
@@ -25,6 +31,10 @@ var velocity_multipliers := [
 ]
 
 func _physics_process(delta: float) -> void:
+	if disable_until_landed and is_on_floor():
+		disable_until_landed = false
+		disable_inputs = false
+	
 	# Add the gravity.
 	if not is_on_floor():
 		has_jumped = true
@@ -33,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		has_jumped = false
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and is_alive:
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and is_alive and !disable_inputs:
 		real_velocity.y = JUMP_VELOCITY
 		is_holding_jump_key = true
 		
@@ -47,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
-	if direction and is_alive:
+	if direction and is_alive and !disable_inputs:
 		#run_start animation
 		if real_velocity.x == 0:
 			run_transition_counter = 0.07
@@ -76,16 +86,18 @@ func _physics_process(delta: float) -> void:
 			velocity.y *= val[2]
 			break
 		velocity.y = real_velocity.y
-		
+	
 	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
-
+	
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
 		is_alive = true
+		real_velocity = Vector2(0,0)
 		var _corpse = corpse.instantiate()
 		_corpse.position = position
 		get_tree().current_scene.add_child(_corpse)
+		has_died.emit()
 		position = spawn.position
  

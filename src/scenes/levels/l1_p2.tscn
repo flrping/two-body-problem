@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=4 uid="uid://lqh050jvqdn"]
+
+[ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="1_i5obk"]
+[ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="2_iwnf7"]
+[ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="3_hrdmc"]
+[ext_resource type="PackedScene" uid="uid://dfvgyohqaaua8" path="res://assets/tilesets/spike_v_tilemap.tscn" id="4_eyrno"]
+
+[node name="L1P2" type="Node2D"]
+
+[node name="Spawn" parent="." instance=ExtResource("1_i5obk")]
+
+[node name="LevelParts1" parent="." instance=ExtResource("2_iwnf7")]
+tile_map_data = PackedByteArray("AAD9/wYAAAAgAAAAAAD+/wYAAAAgAAAAAAD//wYAAAAgAAAAAAAAAAYAAAAgAAAAAAABAAYAAAAgAAAAAAACAAYAAAAgAAAAAAD7/wYAAAAgAAAAAAD8/wYAAAAgAAAAAAADAAYAAAAgAAAAAAAEAAYAAAAgAAAAAAAFAAYAAAAgAAAAAAAGAAYAAAAgAAAAAAAHAAYAAAAgAAAAAAAIAAYAAAAgAAAAAAAJAAYAAAAgAAAAAAAKAAYAAAAgAAAAAAALAAYAAAAgAAAAAAD6/wYAAAAgAAAAAAD6/wUAAAAgAAAAAAD6/wQAAAAgAAAAAAD6/wMAAAAgAAAAAAD6/wIAAAAgAAAAAAD6/wEAAAAgAAAAAAD6/wAAAAAgAAAAAAD6////AAAgAAAAAAD6//7/AAAgAAAAAAD6//3/AAAgAAAAAAD6//z/AAAgAAAAAAA=")
+
+[node name="Player" parent="." instance=ExtResource("3_hrdmc")]
+position = Vector2(0, -3)
+
+[node name="background elements" parent="." instance=ExtResource("2_iwnf7")]
+tile_map_data = PackedByteArray("AAD5/wAAAAAIAAAAAAD6/wAAAAAKAAAAAAD7/wAAAAAMAAAAAAD8/wAAAAAOAAAAAAD4/wAAAAAGAAAAAAD4/wEAAAAGAAAAAAD4/wIAAAAGAAAAAAD4/wMAAAAUAAAAAAD4/wQAAAAGAAAAAAD4/wUAAAAGAAAAAAD4/wYAAAAGAAAAAAD9/wAAAAAGAAAAAAD9/wEAAAAGAAAAAAD9/wIAAAAGAAAAAAD9/wMAAAAGAAAAAAD9/wQAAAAGAAAAAAD9/wUAAAASAAAAAAD9/wYAAAAGAAAAAAD9/wcAAAAGAAAAAAD9/wgAAAAGAAAAAAD4/wcAAAAGAAAAAAD4/wgAAAAGAAAAAAD4/wkAAAAGAAAAAAD4/woAAAAGAAAAAAD9/wkAAAAGAAAAAAD9/woAAAAGAAAAAAD9/wsAAAAGAAAAAAD9/wwAAAAGAAAAAAD9/w0AAAAGAAAAAAD9/w4AAAAGAAAAAAD9/w8AAAAGAAAAAAD4/wsAAAAGAAAAAAD4/wwAAAAGAAAAAAD4/w0AAAAGAAAAAAD4/w4AAAAGAAAAAAD4/w8AAAAGAAAAAAA=")
+
+[node name="spike_v_tilemap" parent="." instance=ExtResource("4_eyrno")]
+position = Vector2(1, -8.275)
