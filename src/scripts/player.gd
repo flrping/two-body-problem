@@ -21,6 +21,11 @@ var disable_inputs = false #disable inputs without enabling respawn
 #special event booleans
 var disable_until_landed = false #used in 1st level
 
+var camera: Camera2D
+var lock_camera_y = false
+var lock_camera_x = false
+var locked_camera_offsets := Vector2(0,0)
+
 signal has_died
 
 var velocity_multipliers := [
@@ -30,6 +35,9 @@ var velocity_multipliers := [
 	[100, 10000, 1.7]
 ]
 
+func _ready() -> void:
+	camera = self.get_node("Camera2D")
+	
 func _physics_process(delta: float) -> void:
 	if disable_until_landed and is_on_floor():
 		disable_until_landed = false
@@ -90,6 +98,12 @@ func _physics_process(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
 	
 	move_and_slide()
+	
+	#do any post-movement camera adjustments
+	if lock_camera_y:
+		camera.position.y = locked_camera_offsets.y - position.y
+	if lock_camera_x:
+		camera.position.x = locked_camera_offsets.x - position.x
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
@@ -100,4 +114,12 @@ func _input(event: InputEvent) -> void:
 		get_tree().current_scene.add_child(_corpse)
 		has_died.emit()
 		position = spawn.position
- 
+		
+func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
+	lock_camera_x = enable_x
+	lock_camera_y = enable_y
+	locked_camera_offsets = Vector2(x,y)	
+
+func disable_inputs_until_landed():
+	disable_until_landed = true
+	disable_inputs = true
