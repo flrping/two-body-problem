@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://t88xl1o0qpsc"]
+
+[ext_resource type="Texture2D" uid="uid://8wyg7o3xtne" path="res://assets/level-components/startingareajunk.png" id="1_g72a5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tm4v7"]
+texture = ExtResource("1_g72a5")
+margins = Vector2i(3, 0)
+texture_region_size = Vector2i(4, 4)
+70:8/0 = 0
+37:79/0 = 0
+16:40/size_in_atlas = Vector2i(20, 20)
+16:40/0 = 0
+38:40/size_in_atlas = Vector2i(7, 7)
+38:40/0 = 0
+58:38/size_in_atlas = Vector2i(12, 12)
+58:38/0 = 0
+60:52/size_in_atlas = Vector2i(23, 9)
+60:52/0 = 0
+86:42/size_in_atlas = Vector2i(13, 19)
+86:42/0 = 0
+104:41/size_in_atlas = Vector2i(13, 20)
+104:41/0 = 0
+120:41/size_in_atlas = Vector2i(13, 20)
+120:41/0 = 0
+137:41/size_in_atlas = Vector2i(13, 20)
+137:41/0 = 0
+195:45/size_in_atlas = Vector2i(5, 16)
+195:45/0 = 0
+201:41/size_in_atlas = Vector2i(6, 20)
+201:41/0 = 0
+211:41/size_in_atlas = Vector2i(6, 20)
+211:41/0 = 0
+218:45/size_in_atlas = Vector2i(5, 16)
+218:45/0 = 0
+225:47/size_in_atlas = Vector2i(22, 14)
+225:47/0 = 0
+250:44/size_in_atlas = Vector2i(36, 17)
+250:44/0 = 0
+152:41/size_in_atlas = Vector2i(42, 20)
+152:41/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dnv42"]
+sources/0 = SubResource("TileSetAtlasSource_tm4v7")
+
+[node name="TileMapLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_dnv42")
