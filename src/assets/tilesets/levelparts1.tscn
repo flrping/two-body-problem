@@ -7,6 +7,7 @@ texture = ExtResource("1_aucv4")
 use_texture_padding = false
 6:0/size_in_atlas = Vector2i(2, 2)
 6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 16:0/size_in_atlas = Vector2i(2, 2)
 16:0/0 = 0
 16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
