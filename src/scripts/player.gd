@@ -115,8 +115,11 @@ func _input(event: InputEvent) -> void:
 		has_died.emit()
 		position = spawn.position
 		
-		
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
 	lock_camera_y = enable_y
 	locked_camera_offsets = Vector2(x,y)	
+
+func disable_inputs_until_landed():
+	disable_until_landed = true
+	disable_inputs = true
