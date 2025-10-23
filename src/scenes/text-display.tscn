@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsqxwoej3owxq"]
+
+[ext_resource type="Script" uid="uid://bhro1mmstc0nh" path="res://scenes/text_display.gd" id="1_0288u"]
+[ext_resource type="FontFile" uid="uid://j6tw40fa4sff" path="res://assets/fonts/pixeloperator/PixelOperatorMono8.ttf" id="1_dlf2u"]
+
+[node name="Node2D" type="Node2D"]
+process_mode = 2
+script = ExtResource("1_0288u")
+text = "hi!
+this is a box! Whoa!! multiline!!!! but can@we have text wrapping? hmmmmmmmmmmm"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+z_index = 1
+offset_left = 48.0
+offset_top = 295.0
+offset_right = 448.0
+offset_bottom = 351.0
+theme_override_fonts/normal_font = ExtResource("1_dlf2u")
+theme_override_font_sizes/normal_font_size = 16
+text = "abcdefghijklmnopqrstuvwxy
+ABCDEFGHIJKLMNOPQRSTUVWXY
+1234567890 max characters"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 32.0
+offset_top = 280.0
+offset_right = 464.0
+offset_bottom = 360.0
+color = Color(0.10747976, 0.10747973, 0.10747973, 0.78431374)
+metadata/_edit_use_anchors_ = true
+
+[node name="ellipsis" type="RichTextLabel" parent="CanvasLayer"]
+z_index = 1
+offset_left = 400.0
+offset_top = 336.0
+offset_right = 800.0
+offset_bottom = 385.0
+theme_override_fonts/normal_font = ExtResource("1_dlf2u")
+theme_override_font_sizes/normal_font_size = 16
+text = "..."
+metadata/_edit_use_anchors_ = true
