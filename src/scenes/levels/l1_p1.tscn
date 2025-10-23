@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://12500eik7y3k"]
+[gd_scene load_steps=7 format=4 uid="uid://12500eik7y3k"]
 
 [ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="1_34jrj"]
 [ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="2_6tjjp"]
 [ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="3_3w6ao"]
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="4_6tjjp"]
+[ext_resource type="Texture2D" uid="uid://c6c2vkiuv2rry" path="res://assets/level-components/door.png" id="5_3w6ao"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_34jrj"]
 distance = 4.371139e-08

@@ -39,6 +39,9 @@ func _ready() -> void:
 	camera = self.get_node("Camera2D")
 	
 func _physics_process(delta: float) -> void:
+	if not is_alive:
+		real_velocity = Vector2(0,0)
+	
 	if disable_until_landed and is_on_floor():
 		disable_until_landed = false
 		disable_inputs = false
@@ -64,6 +67,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
+	
+	print(is_alive, velocity, " ", real_velocity)
 	
 	if direction and is_alive and !disable_inputs:
 		#run_start animation
