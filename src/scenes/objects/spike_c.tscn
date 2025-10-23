@@ -15,7 +15,7 @@ region_filter_clip_enabled = true
 script = ExtResource("2_lkdr0")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D/HazardArea2D"]
-polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, -7, 16, -7, -7, 16, -7)
+polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, -5, 16, -5, -5, 16, -5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-16, 16, -16, -16, 16, -16, 16, -8, -8, -8, -8, 16)
+polygon = PackedVector2Array(-16, 16, -16, -16, 16, -16, 16, -7, -7, -7, -7, 16)
