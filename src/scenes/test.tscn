@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjxxjp18q6ra4"]
+[gd_scene load_steps=10 format=4 uid="uid://bjxxjp18q6ra4"]
 
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="1_bl13t"]
 [ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="1_fghjm"]
 [ext_resource type="PackedScene" uid="uid://bjnvryfbfpnb7" path="res://scenes/platform.tscn" id="3_iyx0m"]
-[ext_resource type="PackedScene" uid="uid://cgsr5tfvs7js4" path="res://scenes/test_hazard.tscn" id="4_74lek"]
 [ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="5_j5jx5"]
+[ext_resource type="PackedScene" uid="uid://d1i1g48f4nhrl" path="res://scenes/objects/spike_v.tscn" id="6_at5dv"]
+[ext_resource type="PackedScene" uid="uid://casxs26f411hj" path="res://scenes/objects/spike_h.tscn" id="6_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="7_at5dv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fghjm"]
-size = Vector2(1462, 43)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_at5dv"]
+distance = -353.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jcd4p"]
+distance = 4.371139e-08
 
 [node name="Test" type="Node2D"]
 
@@ -20,34 +25,11 @@ metadata/to = "test-transitions"
 [node name="Player" parent="." instance=ExtResource("1_fghjm")]
 position = Vector2(60, 325)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_left = -2.0
-offset_top = 357.0
-offset_right = 1202.0
-offset_bottom = 402.0
-color = Color(0.5894964, 0.35115573, 0.44335625, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(573, 378.5)
-shape = SubResource("RectangleShape2D_fghjm")
-debug_color = Color(0.7387652, 0.37190515, 0.73216456, 0.41960785)
-
 [node name="Platform" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(372, 273)
 
 [node name="Platform2" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(783, 209)
-
-[node name="TestHazard" parent="." instance=ExtResource("4_74lek")]
-position = Vector2(179, 317)
-
-[node name="TestHazard2" parent="." instance=ExtResource("4_74lek")]
-position = Vector2(139, 317)
-
-[node name="TestHazard3" parent="." instance=ExtResource("4_74lek")]
-position = Vector2(219, 317)
 
 [node name="Platform3" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(570, 211)
@@ -58,8 +40,37 @@ position = Vector2(1046, 147)
 [node name="Platform5" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(911, 209)
 
-[node name="TestHazard4" parent="." instance=ExtResource("4_74lek")]
-position = Vector2(259, 317)
-
 [node name="Spawn" parent="." instance=ExtResource("5_j5jx5")]
 position = Vector2(59, 268)
+
+[node name="Sprite2D" parent="." instance=ExtResource("6_lpvoh")]
+position = Vector2(16, 336)
+
+[node name="Sprite2D2" parent="." instance=ExtResource("6_lpvoh")]
+position = Vector2(16, 304)
+
+[node name="SpikeV" parent="." instance=ExtResource("6_at5dv")]
+position = Vector2(112, 336)
+
+[node name="SpikeV2" parent="." instance=ExtResource("6_at5dv")]
+position = Vector2(144, 336)
+
+[node name="SpikeV3" parent="." instance=ExtResource("6_at5dv")]
+position = Vector2(176, 336)
+
+[node name="SpikeV4" parent="." instance=ExtResource("6_at5dv")]
+position = Vector2(208, 336)
+
+[node name="LevelParts1" parent="." instance=ExtResource("7_at5dv")]
+tile_map_data = PackedByteArray("AAAAAAsAAAAgAAAAAAABAAsAAAAgAAAAAAACAAsAAAAgAAAAAAADAAsAAAAgAAAAAAAEAAsAAAAgAAAAAAAFAAsAAAAgAAAAAAAGAAsAAAAgAAAAAAAHAAsAAAAgAAAAAAAIAAsAAAAgAAAAAAAJAAsAAAAgAAAAAAAKAAsAAAAgAAAAAAALAAsAAAAgAAAAAAAMAAsAAAAgAAAAAAANAAsAAAAgAAAAAAAOAAsAAAAgAAAAAAAPAAsAAAAgAAAAAAD6/wsAAAAgAAAAAAD7/wsAAAAgAAAAAAD8/wsAAAAgAAAAAAD9/wsAAAAgAAAAAAD+/wsAAAAgAAAAAAD//wsAAAAgAAAAAAD//woAAAAeAAAAAAD//wkAAAAcAAAAAAD//wgAAAAcAAAAAAD+/wgAAAASAAAAAAD+/woAAAASAAAAAAD+/wkAAAAWAAAAAAD9/woAAAAQAAAAAAD8/woAAAAQAAAAAAD9/wkAAAAQAAAAAAD9/wgAAAAOAAAAAAD8/wgAAAAMAAAAAAD//wcAAAAGAAAAAAD+/wcAAAAGAAAAAAD9/wcAAAAGAAAAAAD8/wcAAAAGAAAAAAD7/wcAAAAGAAAAAAD6/wcAAAAGAAAAAAAPAAwAAAAgAAAAAAAPAA0AAAAgAAAAAAAPAA4AAAAgAAAAAAAOAA4AAAAgAAAAAAANAA4AAAAgAAAAAAAMAA4AAAAgAAAAAAALAA4AAAAgAAAAAAAKAA4AAAAgAAAAAAAJAA4AAAAgAAAAAAAIAA4AAAAgAAAAAAAHAA4AAAAgAAAAAAAGAA4AAAAgAAAAAAAFAA4AAAAgAAAAAAAEAA4AAAAgAAAAAAADAA4AAAAgAAAAAAACAA4AAAAgAAAAAAABAA4AAAAgAAAAAAAAAA4AAAAgAAAAAAD//w4AAAAgAAAAAAD+/w4AAAAgAAAAAAD9/w4AAAAgAAAAAAD8/w4AAAAgAAAAAAD7/w4AAAAgAAAAAAD6/w4AAAAgAAAAAAD6/w0AAAAgAAAAAAD6/wwAAAAgAAAAAAD7/wwAAAAgAAAAAAD8/wwAAAAgAAAAAAD9/wwAAAAgAAAAAAD+/wwAAAAgAAAAAAD//wwAAAAgAAAAAAAAAAwAAAAgAAAAAAABAAwAAAAgAAAAAAACAAwAAAAgAAAAAAADAAwAAAAgAAAAAAAEAAwAAAAgAAAAAAAFAAwAAAAgAAAAAAAGAAwAAAAgAAAAAAAHAAwAAAAgAAAAAAAIAAwAAAAgAAAAAAAJAAwAAAAgAAAAAAAKAAwAAAAgAAAAAAALAAwAAAAgAAAAAAAMAAwAAAAgAAAAAAANAAwAAAAgAAAAAAAOAAwAAAAgAAAAAAAOAA0AAAAgAAAAAAANAA0AAAAgAAAAAAAMAA0AAAAgAAAAAAALAA0AAAAgAAAAAAAKAA0AAAAgAAAAAAAJAA0AAAAgAAAAAAAIAA0AAAAgAAAAAAAHAA0AAAAgAAAAAAAGAA0AAAAgAAAAAAAFAA0AAAAgAAAAAAAEAA0AAAAgAAAAAAADAA0AAAAgAAAAAAACAA0AAAAgAAAAAAABAA0AAAAgAAAAAAAAAA0AAAAgAAAAAAD//w0AAAAgAAAAAAD+/w0AAAAgAAAAAAD9/w0AAAAgAAAAAAD8/w0AAAAgAAAAAAD7/w0AAAAgAAAAAAAQAAsAAAAgAAAAAAARAAsAAAAgAAAAAAASAAsAAAAgAAAAAAATAAsAAAAgAAAAAAAUAAsAAAAgAAAAAAAVAAsAAAAgAAAAAAAWAAsAAAAgAAAAAAAXAAsAAAAgAAAAAAAYAAsAAAAgAAAAAAAZAAsAAAAgAAAAAAAaAAsAAAAgAAAAAAAbAAsAAAAgAAAAAAAcAAsAAAAgAAAAAAAdAAsAAAAgAAAAAAAeAAsAAAAgAAAAAAAfAAsAAAAgAAAAAAAgAAsAAAAgAAAAAAAhAAsAAAAgAAAAAAAiAAsAAAAgAAAAAAAjAAsAAAAgAAAAAAAkAAsAAAAgAAAAAAAkAAwAAAAgAAAAAAAkAA0AAAAgAAAAAAAkAA4AAAAgAAAAAAAjAA4AAAAgAAAAAAAiAA4AAAAgAAAAAAAhAA4AAAAgAAAAAAAgAA4AAAAgAAAAAAAfAA4AAAAgAAAAAAAeAA4AAAAgAAAAAAAdAA4AAAAgAAAAAAAcAA4AAAAgAAAAAAAbAA4AAAAgAAAAAAAaAA4AAAAgAAAAAAAZAA4AAAAgAAAAAAAYAA4AAAAgAAAAAAAXAA4AAAAgAAAAAAAWAA4AAAAgAAAAAAAVAA4AAAAgAAAAAAAUAA4AAAAgAAAAAAATAA4AAAAgAAAAAAASAA4AAAAgAAAAAAARAA4AAAAgAAAAAAAQAA4AAAAgAAAAAAAQAA0AAAAgAAAAAAAQAAwAAAAgAAAAAAARAAwAAAAgAAAAAAASAAwAAAAgAAAAAAATAAwAAAAgAAAAAAAUAAwAAAAgAAAAAAAVAAwAAAAgAAAAAAAWAAwAAAAgAAAAAAAXAAwAAAAgAAAAAAAYAAwAAAAgAAAAAAAZAAwAAAAgAAAAAAAaAAwAAAAgAAAAAAAbAAwAAAAgAAAAAAAcAAwAAAAgAAAAAAAdAAwAAAAgAAAAAAAeAAwAAAAgAAAAAAAfAAwAAAAgAAAAAAAgAAwAAAAgAAAAAAAhAAwAAAAgAAAAAAAiAAwAAAAgAAAAAAAjAAwAAAAgAAAAAAAjAA0AAAAgAAAAAAAiAA0AAAAgAAAAAAAhAA0AAAAgAAAAAAAgAA0AAAAgAAAAAAAfAA0AAAAgAAAAAAAeAA0AAAAgAAAAAAAdAA0AAAAgAAAAAAAcAA0AAAAgAAAAAAAbAA0AAAAgAAAAAAAaAA0AAAAgAAAAAAAZAA0AAAAgAAAAAAAYAA0AAAAgAAAAAAAXAA0AAAAgAAAAAAAWAA0AAAAgAAAAAAAVAA0AAAAgAAAAAAAUAA0AAAAgAAAAAAATAA0AAAAgAAAAAAASAA0AAAAgAAAAAAARAA0AAAAgAAAAAAA=")
+
+[node name="WorldBoundBottom" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundBottom"]
+shape = SubResource("WorldBoundaryShape2D_at5dv")
+
+[node name="WorldBoundLeft" type="StaticBody2D" parent="."]
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundLeft"]
+shape = SubResource("WorldBoundaryShape2D_jcd4p")

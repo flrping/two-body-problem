@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1i1g48f4nhrl"]
+
+[ext_resource type="Texture2D" uid="uid://dpvjlnrheo77m" path="res://assets/level-components/tileset1-export.png" id="1_hxc4e"]
+[ext_resource type="Script" uid="uid://d3mbx0hgajawy" path="res://scripts/hazard.gd" id="2_vqfuf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52ep5"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0pcp"]
+size = Vector2(32, 10)
+
+[node name="SpikeV" type="Sprite2D"]
+texture = ExtResource("1_hxc4e")
+region_enabled = true
+region_rect = Rect2(608, 0, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_52ep5")
+
+[node name="HazardArea2D" type="Area2D" parent="StaticBody2D"]
+script = ExtResource("2_vqfuf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/HazardArea2D"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_a0pcp")
+debug_color = Color(0.903714, 0.26778838, 0.3959646, 0.41960785)
