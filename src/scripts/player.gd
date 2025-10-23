@@ -10,7 +10,7 @@ const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
 @onready var spawn = get_tree().current_scene.get_node("Spawn")
-@onready var corpse = preload("res://scenes/dead_robot.tscn")
+@onready var corpse = preload("res://scenes/objects/dead_robot.tscn")
 
 var run_transition_counter = 0;
 var has_jumped = false
@@ -107,11 +107,16 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
-		is_alive = true
+		is_alive = true # we may want to change the order of this. we could temp save the position.
 		real_velocity = Vector2(0,0)
+		
 		var _corpse = corpse.instantiate()
-		_corpse.position = position
+		# may not want to hard code this in the future, but time constraints! 
+		# (player height - slightly less corpse height)
+		var offset = (64 - 24) / 2 
+		_corpse.position = position + Vector2(0, offset)
 		get_tree().current_scene.add_child(_corpse)
+		
 		has_died.emit()
 		position = spawn.position
 		
