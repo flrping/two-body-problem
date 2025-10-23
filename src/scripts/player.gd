@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 			animation.flip_h = true
 		else:
 			animation.flip_h = false
-	else:
+	elif is_alive:
 		real_velocity.x = move_toward(real_velocity.x, 0, SPEED)
 		animation.play("idle")
 		
@@ -107,7 +107,6 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
-		is_alive = true # we may want to change the order of this. we could temp save the position.
 		real_velocity = Vector2(0,0)
 		
 		var _corpse = corpse.instantiate()
@@ -118,8 +117,18 @@ func _input(event: InputEvent) -> void:
 		get_tree().current_scene.add_child(_corpse)
 		
 		has_died.emit()
-		position = spawn.position
 		
+		var exists = get_tree().current_scene.get_node_or_null("Player/Camera2D/DeathScreen")
+		if exists != null:
+			exists.free()
+		
+		camera.position_smoothing_enabled = true
+		animation.play("reanimate")
+		await animation.animation_finished
+		
+		position = spawn.position
+		is_alive = true
+
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
 	lock_camera_y = enable_y
