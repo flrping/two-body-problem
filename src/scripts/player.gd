@@ -10,7 +10,7 @@ const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
 @onready var spawn = get_tree().current_scene.get_node("Spawn")
-@onready var corpse = preload("res://scenes/dead_robot.tscn")
+@onready var corpse = preload("res://scenes/objects/dead_robot.tscn")
 
 var run_transition_counter = 0;
 var has_jumped = false
@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 			animation.flip_h = true
 		else:
 			animation.flip_h = false
-	else:
+	elif is_alive:
 		real_velocity.x = move_toward(real_velocity.x, 0, SPEED)
 		animation.play("idle")
 		
@@ -107,14 +107,28 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
-		is_alive = true
 		real_velocity = Vector2(0,0)
-		var _corpse = corpse.instantiate()
-		_corpse.position = position
-		get_tree().current_scene.add_child(_corpse)
-		has_died.emit()
-		position = spawn.position
 		
+		var _corpse = corpse.instantiate()
+		# may not want to hard code this in the future, but time constraints! 
+		# (player height - slightly less corpse height)
+		var offset = (64 - 24) / 2 
+		_corpse.position = position + Vector2(0, offset)
+		get_tree().current_scene.add_child(_corpse)
+		
+		has_died.emit()
+		
+		var exists = get_tree().current_scene.get_node_or_null("Player/Camera2D/DeathScreen")
+		if exists != null:
+			exists.free()
+		
+		camera.position_smoothing_enabled = true
+		animation.play("reanimate")
+		await animation.animation_finished
+		
+		position = spawn.position
+		is_alive = true
+
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
 	lock_camera_y = enable_y
