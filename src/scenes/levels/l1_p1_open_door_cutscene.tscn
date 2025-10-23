@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1iyh5beqcc47"]
+
+[ext_resource type="PackedScene" uid="uid://bxi1veotlmv27" path="res://scenes/cutscene.tscn" id="1_mylqj"]
+
+[node name="L1OpenDoorCutscene" type="Node2D"]
+
+[node name="Cutscene" parent="." instance=ExtResource("1_mylqj")]
+offset_left = 261.0
+offset_top = 255.0
+offset_right = 261.0
+offset_bottom = 255.0
+cutscenePath = "res://assets/cutscenes/open_door.ogv"
+nextScenePath = "res://scenes/levels/l1_p2.tscn"

@@ -29,7 +29,7 @@ shape = SubResource("WorldBoundaryShape2D_34jrj")
 [node name="Transition" parent="." instance=ExtResource("4_6tjjp")]
 z_index = -2
 position = Vector2(623, 34)
-target = "res://scenes/levels/l1_p2.tscn"
+target = "res://scenes/levels/l1_p1_open_door_cutscene.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="Transition"]
 offset_left = -14.0
