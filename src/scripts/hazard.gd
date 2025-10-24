@@ -6,6 +6,8 @@ class_name HazardArea2D
 @export var damage: int = 0;
 @onready var deathScreen = load("res://scenes/death_screen.tscn")
 
+signal player_died
+
 func _ready() -> void:
 	body_entered.connect(_on_area_2d_body_entered)
 	
@@ -16,6 +18,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			return
 		print("hazard")
 		body.is_alive = false;
+		emit_signal("player_died", body)
 		
 		# spawns the death screen. 
 		# probably should move this logic to a signal that the game itself listens to in the future.

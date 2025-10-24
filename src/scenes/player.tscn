@@ -1,10 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://dt3anowi1fbkx"]
+[gd_scene load_steps=41 format=3 uid="uid://dt3anowi1fbkx"]
 
 [ext_resource type="Script" uid="uid://bv04ggu6sv6je" path="res://scripts/player.gd" id="1_xo3ru"]
 [ext_resource type="Texture2D" uid="uid://bci87y7y5ilx" path="res://assets/2broidle.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://bd4ul6gdvpr1a" path="res://assets/2bro_run.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cin8ono1x2mxt" path="res://assets/reanimate.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://tu1jlm0ajgea" path="res://assets/2broruntransition.png" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://qm0sh3eh4am" path="res://scripts/player_beep.gd" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://dirno1lrua334" path="res://assets/audio/glitch-fx-transitions-7-373373.mp3" id="7_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -278,3 +280,20 @@ debug_color = Color(0.78710437, 0.9557368, 0.9999998, 0.41960785)
 offset = Vector2(0, -50)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+volume_db = -17.5
+script = ExtResource("6_tuyoq")
+
+[node name="Timer" type="Timer" parent="Beep"]
+wait_time = 30.0
+autostart = true
+
+[node name="Revive" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fjrip")
+volume_db = -10.0
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[connection signal="timeout" from="Beep/Timer" to="Beep" method="_on_timer_timeout"]
