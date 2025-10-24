@@ -29,7 +29,7 @@ rotation = 1.5707964
 tile_map_data = PackedByteArray("AADo/+H/AAAAAAAAAQDp/+H/AAAAAAAAAQDq/+H/AAAAAAAAAQDr/+H/AAAAAAAAAQDs/+H/AAAAAAAAAQDt/+H/AAAAAAAAAQDu/+H/AAAAAAAAAQDv/+H/AAAAAAAAAQDw/+H/AAAAAAAAAQDx/+H/AAAAAAAAAQDy/+H/AAAAAAAAAQDz/+H/AAAAAAAAAQD0/+H/AAAAAAAAAQD1/+H/AAAAAAAAAQD2/+H/AAAAAAAAAQA=")
 
 [node name="TileMapLayer" parent="." instance=ExtResource("5_o6eca")]
-tile_map_data = PackedByteArray("AAANAPr/AABtABYAAAA=")
+tile_map_data = PackedByteArray("AAANAPr/AABtABYAAABDAPr/AABGABIAAAA=")
 
 [node name="walls" parent="." instance=ExtResource("6_5ajhm")]
 z_index = -10
