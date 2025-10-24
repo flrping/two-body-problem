@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=4 uid="uid://cvadn58wjtysv"]
+
+[ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="1_0lut6"]
+[ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="2_ath7d"]
+[ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="2_cr7b6"]
+[ext_resource type="PackedScene" uid="uid://dfvgyohqaaua8" path="res://assets/tilesets/spike_v_tilemap.tscn" id="3_ath7d"]
+
+[node name="Walls" type="Node2D"]
+
+[node name="LevelParts1" parent="." instance=ExtResource("1_0lut6")]
+tile_map_data = PackedByteArray("AAAAAP//AAAgAAAAAAABAP//AAAgAAAAAAACAP//AAAgAAAAAAADAP//AAAgAAAAAAAEAP//AAAgAAAAAAAFAP//AAAgAAAAAAAGAP//AAAgAAAAAAAHAP//AAAgAAAAAAAIAP//AAAgAAAAAAAJAP//AAAgAAAAAAAKAP//AAAgAAAAAAALAP//AAAgAAAAAAAMAP//AAAgAAAAAAANAP//AAAgAAAAAAAOAP//AAAgAAAAAAAPAP//AAAgAAAAAAAQAP//AAAgAAAAAAARAP//AAAgAAAAAAASAP//AAAgAAAAAAATAP//AAAgAAAAAAAUAP//AAAgAAAAAAAUAPf/AAAgAAAAAAAUAPj/AAAgAAAAAAAUAPn/AAAgAAAAAAAUAPr/AAAgAAAAAAAUAPv/AAAgAAAAAAAUAPz/AAAgAAAAAAAUAP3/AAAgAAAAAAAUAP7/AAAgAAAAAAAOAPL/AAAgAAAAAAAOAPP/AAAgAAAAAAAOAPT/AAAgAAAAAAAOAPX/AAAgAAAAAAAOAPb/AAAgAAAAAAAOAPf/AAAgAAAAAAAOAPj/AAAgAAAAAAAOAPn/AAAgAAAAAAAOAPr/AAAgAAAAAAAOAPv/AAAgAAAAAAAVAP//AAAgAAAAAAAWAP//AAAgAAAAAAAXAP//AAAgAAAAAAAYAP//AAAgAAAAAAAZAP//AAAgAAAAAAAaAP//AAAgAAAAAAAbAP//AAAgAAAAAAAcAP//AAAgAAAAAAAdAP//AAAgAAAAAAAeAP//AAAgAAAAAAAfAP//AAAgAAAAAAAgAP//AAAgAAAAAAAhAP//AAAgAAAAAAAiAP//AAAgAAAAAAA=")
+
+[node name="Spawn" parent="." instance=ExtResource("2_cr7b6")]
+position = Vector2(76, -64)
+
+[node name="Player" parent="." instance=ExtResource("2_ath7d")]
+position = Vector2(74, -62)
+
+[node name="spike_v_tilemap_right" parent="." instance=ExtResource("3_ath7d")]
+position = Vector2(-8, 8)
+rotation = -1.5707964
+tile_map_data = PackedByteArray("AAADACcAAAAAAAAAAQAEACcAAAAAAAAAAQAFACcAAAAAAAAAAQAGACcAAAAAAAAAAQAHACcAAAAAAAAAAQAIACcAAAAAAAAAAQAJACcAAAAAAAAAAQAKACcAAAAAAAAAAQALACcAAAAAAAAAAQAMACcAAAAAAAAAAQANACcAAAAAAAAAAQAOACcAAAAAAAAAAQA=")
+
+[node name="spike_v_tilemap_left" parent="." instance=ExtResource("3_ath7d")]
+position = Vector2(9, -8)
+rotation = 1.5707964
+tile_map_data = PackedByteArray("AADo/+H/AAAAAAAAAQDp/+H/AAAAAAAAAQDq/+H/AAAAAAAAAQDr/+H/AAAAAAAAAQDs/+H/AAAAAAAAAQDt/+H/AAAAAAAAAQDu/+H/AAAAAAAAAQDv/+H/AAAAAAAAAQDw/+H/AAAAAAAAAQDx/+H/AAAAAAAAAQDy/+H/AAAAAAAAAQDz/+H/AAAAAAAAAQD0/+H/AAAAAAAAAQD1/+H/AAAAAAAAAQD2/+H/AAAAAAAAAQA=")
