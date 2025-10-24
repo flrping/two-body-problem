@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var is_alive = true;
 
+@export var debug = true
+
 const SPEED = 380.0
 const JUMP_VELOCITY = -450.0
 const MAX_VELOCITY = 800
@@ -37,10 +39,10 @@ var velocity_multipliers := [
 
 func _ready() -> void:
 	camera = self.get_node("Camera2D")
-	
+
 func _physics_process(delta: float) -> void:
-	if not is_alive:
-		real_velocity = Vector2(0,0)
+	if debug:
+		print("2bro ", position, " ", velocity, " ", real_velocity)
 	
 	if disable_until_landed and is_on_floor():
 		disable_until_landed = false
@@ -68,8 +70,6 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
-	print(is_alive, velocity, " ", real_velocity)
-	
 	if direction and is_alive and !disable_inputs:
 		#run_start animation
 		if real_velocity.x == 0:
@@ -91,6 +91,11 @@ func _physics_process(delta: float) -> void:
 		real_velocity.x = move_toward(real_velocity.x, 0, SPEED)
 		animation.play("idle")
 		
+	
+	
+	if not is_alive:
+		real_velocity = Vector2(0,0)	
+	
 	velocity.x = real_velocity.x
 	velocity.y = real_velocity.y
 	
@@ -110,15 +115,16 @@ func _physics_process(delta: float) -> void:
 	if lock_camera_x:
 		camera.position.x = locked_camera_offsets.x - position.x
 
+
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
-		real_velocity = Vector2(0,0)
-		
 		var _corpse = corpse.instantiate()
 		# may not want to hard code this in the future, but time constraints! 
 		# (player height - slightly less corpse height)
 		var offset = (64 - 24) / 2 
 		_corpse.position = position + Vector2(0, offset)
+		
 		get_tree().current_scene.add_child(_corpse)
 		
 		has_died.emit()
