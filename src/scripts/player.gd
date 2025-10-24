@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var is_alive = true;
 
+@export var debug = false
+
 const SPEED = 380.0
 const JUMP_VELOCITY = -450.0
 const MAX_VELOCITY = 800
@@ -20,6 +22,7 @@ var disable_inputs = false #disable inputs without enabling respawn
 
 #special event booleans
 var disable_until_landed = false #used in 1st level
+var death_anim_triggered = false #use to prevent death events from triggering more than once
 
 var camera: Camera2D
 var lock_camera_y = false
@@ -37,8 +40,11 @@ var velocity_multipliers := [
 
 func _ready() -> void:
 	camera = self.get_node("Camera2D")
-	
+
 func _physics_process(delta: float) -> void:
+	if debug:
+		print("2bro ", position, " ", velocity, " ", real_velocity)
+	
 	if disable_until_landed and is_on_floor():
 		disable_until_landed = false
 		disable_inputs = false
@@ -86,6 +92,11 @@ func _physics_process(delta: float) -> void:
 		real_velocity.x = move_toward(real_velocity.x, 0, SPEED)
 		animation.play("idle")
 		
+	
+	
+	if not is_alive:
+		real_velocity = Vector2(0,0)	
+	
 	velocity.x = real_velocity.x
 	velocity.y = real_velocity.y
 	
@@ -105,15 +116,18 @@ func _physics_process(delta: float) -> void:
 	if lock_camera_x:
 		camera.position.x = locked_camera_offsets.x - position.x
 
+
+
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
-		real_velocity = Vector2(0,0)
-		
+	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
+		death_anim_triggered = true
+		print("corpse time!!!")
 		var _corpse = corpse.instantiate()
 		# may not want to hard code this in the future, but time constraints! 
 		# (player height - slightly less corpse height)
 		var offset = (64 - 24) / 2 
 		_corpse.position = position + Vector2(0, offset)
+		
 		get_tree().current_scene.add_child(_corpse)
 		
 		has_died.emit()
@@ -128,6 +142,7 @@ func _input(event: InputEvent) -> void:
 		
 		position = spawn.position
 		is_alive = true
+		death_anim_triggered = false
 
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x

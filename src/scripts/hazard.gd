@@ -1,6 +1,8 @@
 extends Area2D
 class_name HazardArea2D
 
+@export var debug = true
+
 @export var damage: int = 0;
 @onready var deathScreen = load("res://scenes/death_screen.tscn")
 
@@ -9,6 +11,10 @@ func _ready() -> void:
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		if !body.is_alive:
+			#prevent the player from dying more than once before respawning
+			return
+		print("hazard")
 		body.is_alive = false;
 		
 		# spawns the death screen. 
