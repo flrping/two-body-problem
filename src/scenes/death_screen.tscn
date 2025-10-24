@@ -35,13 +35,14 @@ texture = ExtResource("1_dwo6e")
 
 [node name="Message" type="Label" parent="."]
 layout_mode = 0
-offset_left = 133.0
-offset_top = 144.0
-offset_right = 375.0
-offset_bottom = 167.0
-text = "TEXT"
+offset_left = 104.0
+offset_top = 134.0
+offset_right = 409.0
+offset_bottom = 161.0
+text = "Death is not your end."
 label_settings = SubResource("LabelSettings_7ns25")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Reanimate" type="Label" parent="."]
 layout_mode = 0
