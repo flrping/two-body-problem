@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://bu8dcus8nm4on"]
+
+[ext_resource type="Texture2D" uid="uid://da4cn4dsxx2gm" path="res://assets/backgrounds/afterlifebackground.png" id="1_dwo6e"]
+[ext_resource type="FontFile" uid="uid://byxax6tlb31sx" path="res://assets/fonts/pixelify/PixelifySans-VariableFont_wght.ttf" id="2_mqh5l"]
+[ext_resource type="Texture2D" uid="uid://rn45mma4ftjt" path="res://assets/reanimate_last.png" id="3_mqh5l"]
+[ext_resource type="Script" uid="uid://n0oxx6vwx36l" path="res://scripts/death_screen_sprite.gd" id="4_7ns25"]
+[ext_resource type="AudioStream" uid="uid://cstbhcfkoi25x" path="res://assets/audio/tracks/death.wav" id="5_gwety"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ns25"]
+font = ExtResource("2_mqh5l")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gwety"]
+font = ExtResource("2_mqh5l")
+font_color = Color(0.44203168, 0.44203168, 0.44203168, 1)
+shadow_size = 0
+
+[node name="DeathScreen" type="Control"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = -500.0
+offset_bottom = -450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -231.0
+offset_top = -9.0
+offset_right = 717.0
+offset_bottom = 414.0
+texture = ExtResource("1_dwo6e")
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 134.0
+offset_right = 409.0
+offset_bottom = 161.0
+text = "Death is not your end."
+label_settings = SubResource("LabelSettings_7ns25")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Reanimate" type="Label" parent="."]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 274.0
+offset_right = 383.0
+offset_bottom = 297.0
+text = "Press Backspace to Reanimate"
+label_settings = SubResource("LabelSettings_gwety")
+horizontal_alignment = 1
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 179.0
+offset_right = 291.0
+offset_bottom = 253.0
+texture = ExtResource("3_mqh5l")
+script = ExtResource("4_7ns25")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gwety")
+autoplay = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://dfvgyohqaaua8"]
+[gd_scene load_steps=4 format=3 uid="uid://dfvgyohqaaua8"]
 
 [ext_resource type="PackedScene" uid="uid://d1i1g48f4nhrl" path="res://scenes/objects/spike_v.tscn" id="1_rdt72"]
 
@@ -9,5 +9,4 @@ scenes/1/scene = ExtResource("1_rdt72")
 sources/0 = SubResource("TileSetScenesCollectionSource_eyrno")
 
 [node name="spike_v_tilemap" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAAIAAsAAAAAAAAAAQAHAAsAAAAAAAAAAQAGAAsAAAAAAAAAAQAFAAsAAAAAAAAAAQAEAAsAAAAAAAAAAQADAAsAAAAAAAAAAQACAAsAAAAAAAAAAQABAAsAAAAAAAAAAQAAAAsAAAAAAAAAAQD//wsAAAAAAAAAAQD+/wsAAAAAAAAAAQD9/wsAAAAAAAAAAQD8/wsAAAAAAAAAAQD7/wsAAAAAAAAAAQD6/wsAAAAAAAAAAQD5/wsAAAAAAAAAAQD4/wsAAAAAAAAAAQD3/wsAAAAAAAAAAQAJAAsAAAAAAAAAAQAKAAsAAAAAAAAAAQALAAsAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_75vpy")

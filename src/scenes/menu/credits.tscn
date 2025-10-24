@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=4 uid="uid://bofafryeee4k4"]
+
+[ext_resource type="Texture2D" uid="uid://clkbf51takd7f" path="res://assets/backgrounds/longwalk/foregroundd8.png" id="1_6yft3"]
+[ext_resource type="Texture2D" uid="uid://b7vw3gh5vp8dw" path="res://assets/backgrounds/longwalk/nearbackground7.png" id="2_kfssv"]
+[ext_resource type="Texture2D" uid="uid://tp1q3d0rhbny" path="res://assets/backgrounds/longwalk/foregroundd7.png" id="3_dsnbq"]
+[ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="4_v08je"]
+[ext_resource type="FontFile" uid="uid://byxax6tlb31sx" path="res://assets/fonts/pixelify/PixelifySans-VariableFont_wght.ttf" id="5_no4j4"]
+[ext_resource type="AudioStream" uid="uid://ppp3tsb3tqta" path="res://assets/audio/tracks/credits.wav" id="7_oh8hr"]
+[ext_resource type="Script" uid="uid://dndcf3mp7t76v" path="res://scripts/back_button.gd" id="8_ev03l"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -166.0
+offset_top = -1.0
+offset_right = 656.0
+offset_bottom = 402.0
+texture = ExtResource("1_6yft3")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -162.0
+offset_right = 652.0
+offset_bottom = 401.0
+texture = ExtResource("2_kfssv")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 500.0
+offset_bottom = 300.0
+texture = ExtResource("3_dsnbq")
+
+[node name="LevelParts1" parent="." instance=ExtResource("4_v08je")]
+position = Vector2(220, 342)
+tile_map_data = PackedByteArray("AAD5////AAAGAAAAAAD6////AAAGAAAAAAD7////AAAGAAAAAAD8////AAAGAAAAAAD9////AAAGAAAAAAD+////AAAGAAAAAAD/////AAAGAAAAAAAAAP//AAAGAAAAAAABAP//AAAGAAAAAAACAP//AAAGAAAAAAADAP//AAAGAAAAAAAEAP//AAAGAAAAAAAFAP//AAAGAAAAAAAGAP//AAAGAAAAAAAHAP//AAAGAAAAAAAIAP//AAAGAAAAAAAJAP//AAAGAAAAAAAKAP//AAAGAAAAAAD4////AAAGAAAAAAD3////AAAGAAAAAAD2////AAAGAAAAAAD6/wAAAAAMAAAAAAD7/wAAAAAOAAAAAAD8/wAAAAASAAAAAAD8/wEAAAASAAAAAAD9/wAAAAAIAAAAAAD+/wAAAAAKAAAAAAAFAAAAAAAMAAAAAAAGAAAAAAAOAAAAAAAHAAAAAAASAAAAAAAHAAEAAAASAAAAAAAIAAAAAAAIAAAAAAAJAAAAAAAKAAAAAAA=")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 68.0
+offset_right = 351.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("5_no4j4")
+theme_override_font_sizes/font_size = 18
+text = "Two Body Problem"
+horizontal_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 76.0
+offset_right = 520.0
+offset_bottom = 319.0
+theme_override_colors/default_color = Color(0.7285387, 0.7285387, 0.7285387, 1)
+theme_override_fonts/normal_font = ExtResource("5_no4j4")
+text = "
+Artist - Retr0Headphones 
+Writer - Dickson Moreno & Retr0Headphones 
+Developer - Jaelyn Vaughan & Kira Kaviani
+DevOps - Patricia Newell
+Director - Kira Kaviani
+Composer - Spadster
+
+Additional Thanks To
+Olivia_Parker, kakaist, Cosmic-scapes, freesound_community, Mathhew_Vakaliuk, NTA88, u_vfd6lcdzng
+"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 366.0
+offset_right = 277.0
+offset_bottom = 394.0
+theme_override_colors/font_color = Color(0.73300475, 0.73300564, 0.733005, 1)
+theme_override_fonts/font = ExtResource("5_no4j4")
+action_mode = 0
+text = "Back"
+flat = true
+script = ExtResource("8_ev03l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_oh8hr")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="Button" method="_on_back_pressed"]
