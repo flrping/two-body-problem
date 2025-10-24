@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://lqh050jvqdn"]
+[gd_scene load_steps=9 format=4 uid="uid://lqh050jvqdn"]
 
 [ext_resource type="Script" uid="uid://bae8pempecq6t" path="res://scenes/levels/l_1_p_2.gd" id="1_75vpy"]
 [ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="1_i5obk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dfvgyohqaaua8" path="res://assets/tilesets/spike_v_tilemap.tscn" id="4_eyrno"]
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="6_wor6r"]
 [ext_resource type="Texture2D" uid="uid://c6c2vkiuv2rry" path="res://assets/level-components/door.png" id="6_wsbiy"]
+[ext_resource type="AudioStream" uid="uid://cqwq7aar6q2n0" path="res://assets/audio/tracks/area 1.wav" id="8_m1rp5"]
 
 [node name="L1P2" type="Node2D"]
 script = ExtResource("1_75vpy")
@@ -36,3 +37,7 @@ target = "res://scenes/levels/longwalk.tscn"
 [node name="Door" type="Sprite2D" parent="Transition"]
 position = Vector2(-1, -17)
 texture = ExtResource("6_wsbiy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_m1rp5")
+autoplay = true

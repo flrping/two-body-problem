@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://bofafryeee4k4"]
+[gd_scene load_steps=8 format=4 uid="uid://bofafryeee4k4"]
 
 [ext_resource type="Texture2D" uid="uid://clkbf51takd7f" path="res://assets/backgrounds/longwalk/foregroundd8.png" id="1_6yft3"]
 [ext_resource type="Texture2D" uid="uid://b7vw3gh5vp8dw" path="res://assets/backgrounds/longwalk/nearbackground7.png" id="2_kfssv"]
 [ext_resource type="Texture2D" uid="uid://tp1q3d0rhbny" path="res://assets/backgrounds/longwalk/foregroundd7.png" id="3_dsnbq"]
 [ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="4_v08je"]
 [ext_resource type="FontFile" uid="uid://byxax6tlb31sx" path="res://assets/fonts/pixelify/PixelifySans-VariableFont_wght.ttf" id="5_no4j4"]
+[ext_resource type="AudioStream" uid="uid://ppp3tsb3tqta" path="res://assets/audio/tracks/credits.wav" id="7_oh8hr"]
 [ext_resource type="Script" uid="uid://dndcf3mp7t76v" path="res://scripts/back_button.gd" id="8_ev03l"]
 
 [node name="Credits" type="Control"]
@@ -81,5 +82,9 @@ action_mode = 0
 text = "Back"
 flat = true
 script = ExtResource("8_ev03l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_oh8hr")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_back_pressed"]

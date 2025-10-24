@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cndhfyldo3a"]
+[gd_scene load_steps=5 format=3 uid="uid://cndhfyldo3a"]
 
 [ext_resource type="PackedScene" uid="uid://bxi1veotlmv27" path="res://scenes/cutscene.tscn" id="1_jokcn"]
+[ext_resource type="AudioStream" uid="uid://co1dx1e1fispo" path="res://assets/audio/tracks/area 1 - Track 2.wav" id="2_bobuk"]
+[ext_resource type="AudioStream" uid="uid://7e4uxuanfba4" path="res://assets/audio/glitch-sfx-312910.mp3" id="3_vr6w5"]
+[ext_resource type="Script" uid="uid://g0tnegkuff0" path="res://scripts/robot_glitch_start.gd" id="4_re48m"]
 
 [node name="L1StartCutscene" type="Node2D"]
 
@@ -11,3 +14,12 @@ offset_right = 152.0
 offset_bottom = 159.0
 cutscenePath = "res://assets/cutscenes/start.ogv"
 nextScenePath = "res://scenes/levels/l1_p1.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bobuk")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vr6w5")
+volume_db = -24.0
+script = ExtResource("4_re48m")

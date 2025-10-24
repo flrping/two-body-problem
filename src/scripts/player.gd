@@ -13,6 +13,12 @@ const FALL_TIGHTNESS = 20;
 @onready var animation = $AnimatedSprite2D
 @onready var spawn = get_tree().current_scene.get_node("Spawn")
 @onready var corpse = preload("res://scenes/objects/dead_robot.tscn")
+@onready var main_player = get_tree().current_scene.get_node_or_null("AudioStreamPlayer")
+@onready var death_audio = [
+	preload("res://assets/audio/Random6 (1).wav"),
+	preload("res://assets/audio/Random6 (2).wav"),
+	preload("res://assets/audio/Random6.wav"),
+]
 
 var run_transition_counter = 0;
 var has_jumped = false
@@ -40,6 +46,7 @@ var velocity_multipliers := [
 
 func _ready() -> void:
 	camera = self.get_node("Camera2D")
+	get_tree().connect("node_added", _on_node_added)
 
 func _physics_process(delta: float) -> void:
 	if debug:
@@ -91,8 +98,6 @@ func _physics_process(delta: float) -> void:
 	elif is_alive:
 		real_velocity.x = move_toward(real_velocity.x, 0, SPEED)
 		animation.play("idle")
-		
-	
 	
 	if not is_alive:
 		real_velocity = Vector2(0,0)	
@@ -116,8 +121,6 @@ func _physics_process(delta: float) -> void:
 	if lock_camera_x:
 		camera.position.x = locked_camera_offsets.x - position.x
 
-
-
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
 		death_anim_triggered = true
@@ -138,11 +141,13 @@ func _input(event: InputEvent) -> void:
 		
 		camera.position_smoothing_enabled = true
 		animation.play("reanimate")
+		get_node("Revive").play()
 		await animation.animation_finished
 		
 		position = spawn.position
 		is_alive = true
 		death_anim_triggered = false
+		main_player.play()
 
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
@@ -152,3 +157,15 @@ func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 func disable_inputs_until_landed():
 	disable_until_landed = true
 	disable_inputs = true
+	
+func _on_node_added(node):
+	if node is HazardArea2D:
+		node.player_died.connect(_on_player_died)
+		
+func _on_player_died(body):
+	if main_player != null:
+		main_player.stop()
+	
+	var _stream = get_node("Death")
+	_stream.stream = death_audio[randi_range(0, death_audio.size() - 1)]
+	_stream.play()
