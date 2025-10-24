@@ -147,7 +147,9 @@ func _input(event: InputEvent) -> void:
 		position = spawn.position
 		is_alive = true
 		death_anim_triggered = false
-		main_player.play()
+		
+		if main_player != null:
+			main_player.play()
 
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
