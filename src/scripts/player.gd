@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var is_alive = true;
 
-@export var debug = true
+@export var debug = false
 
 const SPEED = 380.0
 const JUMP_VELOCITY = -450.0
@@ -22,6 +22,7 @@ var disable_inputs = false #disable inputs without enabling respawn
 
 #special event booleans
 var disable_until_landed = false #used in 1st level
+var death_anim_triggered = false #use to prevent death events from triggering more than once
 
 var camera: Camera2D
 var lock_camera_y = false
@@ -118,7 +119,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("ui_text_backspace") and not is_alive:
+	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
+		death_anim_triggered = true
+		print("corpse time!!!")
 		var _corpse = corpse.instantiate()
 		# may not want to hard code this in the future, but time constraints! 
 		# (player height - slightly less corpse height)
@@ -139,6 +142,7 @@ func _input(event: InputEvent) -> void:
 		
 		position = spawn.position
 		is_alive = true
+		death_anim_triggered = false
 
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
