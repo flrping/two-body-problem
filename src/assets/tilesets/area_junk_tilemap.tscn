@@ -24,20 +24,21 @@ texture_region_size = Vector2i(4, 4)
 120:41/0 = 0
 137:41/size_in_atlas = Vector2i(13, 20)
 137:41/0 = 0
-195:45/size_in_atlas = Vector2i(5, 16)
-195:45/0 = 0
 201:41/size_in_atlas = Vector2i(6, 20)
 201:41/0 = 0
 211:41/size_in_atlas = Vector2i(6, 20)
 211:41/0 = 0
-218:45/size_in_atlas = Vector2i(5, 16)
-218:45/0 = 0
 225:47/size_in_atlas = Vector2i(22, 14)
 225:47/0 = 0
-250:44/size_in_atlas = Vector2i(36, 17)
-250:44/0 = 0
 152:41/size_in_atlas = Vector2i(42, 20)
 152:41/0 = 0
+195:41/size_in_atlas = Vector2i(5, 20)
+195:41/0 = 0
+218:41/size_in_atlas = Vector2i(5, 20)
+218:41/0 = 0
+250:41/size_in_atlas = Vector2i(36, 20)
+250:41/0 = 0
+243:44/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_dnv42"]
 sources/0 = SubResource("TileSetAtlasSource_tm4v7")
