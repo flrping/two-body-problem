@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://lqh050jvqdn"]
+[gd_scene load_steps=16 format=4 uid="uid://lqh050jvqdn"]
 
 [ext_resource type="Script" uid="uid://bae8pempecq6t" path="res://scenes/levels/l_1_p_2.gd" id="1_75vpy"]
 [ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="1_i5obk"]
@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://c1nv354x4t8lf" path="res://assets/tilesets/walls_tilemap.tscn" id="6_m1rp5"]
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="6_wor6r"]
 [ext_resource type="Texture2D" uid="uid://c6c2vkiuv2rry" path="res://assets/level-components/door.png" id="6_wsbiy"]
-[ext_resource type="PackedScene" path="res://assets/tilesets/signs_tilemap.tscn" id="8_wd5ic"]
-[ext_resource type="PackedScene" path="res://assets/tilesets/junk_tilemap.tscn" id="9_f4eqn"]
+[ext_resource type="AudioStream" uid="uid://bmecrvjhfwnfc" path="res://assets/audio/tracks/area 1.wav" id="8_m1rp5"]
+[ext_resource type="PackedScene" uid="uid://5mrslwcig7pc" path="res://assets/tilesets/signs_tilemap.tscn" id="8_wd5ic"]
+[ext_resource type="PackedScene" uid="uid://bby8c1061uw8p" path="res://assets/tilesets/junk_tilemap.tscn" id="9_f4eqn"]
 [ext_resource type="Shader" uid="uid://baphti8a3qv37" path="res://assets/shaders/darken-slightly.gdshader" id="10_w1x5k"]
 [ext_resource type="Texture2D" uid="uid://cjtd7uxjay2bq" path="res://assets/tilesets/corngun.png" id="11_kwoxp"]
-[ext_resource type="AudioStream" uid="uid://cqwq7aar6q2n0" path="res://assets/audio/tracks/area 1.wav" id="8_m1rp5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kwoxp"]
 shader = ExtResource("10_w1x5k")
@@ -81,10 +81,11 @@ target = "res://scenes/levels/longwalk.tscn"
 position = Vector2(-1, -17)
 texture = ExtResource("6_wsbiy")
 
-
 [node name="fg\'" type="Node2D" parent="."]
 z_index = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_m1rp5")
 autoplay = true
+
+[connection signal="has_died" from="Player" to="." method="_on_player_has_died"]

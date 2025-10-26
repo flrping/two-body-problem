@@ -12,7 +12,6 @@ const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
 @onready var spawn = get_tree().current_scene.get_node("Spawn")
-@onready var corpse = preload("res://scenes/objects/dead_robot.tscn")
 @onready var main_player = get_tree().current_scene.get_node_or_null("AudioStreamPlayer")
 @onready var death_audio = [
 	preload("res://assets/audio/Random6 (1).wav"),
@@ -124,16 +123,13 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
 		death_anim_triggered = true
-		print("corpse time!!!")
-		var _corpse = corpse.instantiate()
+		
 		# may not want to hard code this in the future, but time constraints! 
 		# (player height - slightly less corpse height)
+		
 		var offset = (64 - 24) / 2 
-		_corpse.position = position + Vector2(0, offset)
-		
-		get_tree().current_scene.add_child(_corpse)
-		
-		has_died.emit()
+		var _corpse = Global.create_body(position + Vector2(0, offset))
+		has_died.emit(_corpse)
 		
 		var exists = get_tree().current_scene.get_node_or_null("Player/Camera2D/DeathScreen")
 		if exists != null:

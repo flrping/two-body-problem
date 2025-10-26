@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0yxxjutc1sjg"]
 
-[ext_resource type="Script" uid="uid://byg35jj604uhu" path="res://scripts/dead_robot.gd" id="1_8dbfu"]
+[ext_resource type="Script" uid="uid://bc3b135r8hp2h" path="res://scripts/dead_robot.gd" id="1_8dbfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmy4"]
 size = Vector2(64, 8)
