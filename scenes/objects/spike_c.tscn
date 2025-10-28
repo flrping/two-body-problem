@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp4qxvmm3s07n"]
 
 [ext_resource type="Texture2D" uid="uid://dpvjlnrheo77m" path="res://assets/level-components/tileset1-export.png" id="1_11q47"]
-[ext_resource type="Script" uid="uid://d3mbx0hgajawy" path="res://scripts/hazard.gd" id="2_lkdr0"]
+[ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="2_lkdr0"]
 
 [node name="SpikeC" type="Sprite2D"]
 texture = ExtResource("1_11q47")
@@ -11,11 +11,11 @@ region_filter_clip_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="HazardArea2D" type="Area2D" parent="StaticBody2D"]
-script = ExtResource("2_lkdr0")
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D/HazardArea2D"]
-polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, -5, 16, -5, -5, 16, -5)
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-16, 16, -16, -16, 16, -16, 16, -7, -7, -7, -7, 16)
+
+[node name="HazardArea2D" type="Area2D" parent="."]
+script = ExtResource("2_lkdr0")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HazardArea2D"]
+polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, -5, 16, -5, -5, 16, -5)

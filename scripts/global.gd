@@ -1,30 +1,41 @@
 extends Node
 
-@onready var corpse = preload("res://scenes/objects/dead_robot.tscn")
+@onready var corpse_h = preload("res://scenes/objects/dead_robot_h.tscn")
+@onready var corpse_v = preload("res://scenes/objects/dead_robot_v.tscn")
 
 # key scene, value array of coordinates
 var bodies = {}
 
 # Creates a body node.
-func create_body(coordinates: Vector2) -> Node: 
-	var _corpse = corpse.instantiate()
+func create_body(coordinates: Vector2, type: String) -> Node: 
+	var _corpse
+	if type == "h":
+		_corpse = corpse_h.instantiate()
+	else:
+		_corpse = corpse_v.instantiate()
 	_corpse.position = coordinates
+	print(type)
 	return _corpse
 
 # Creates a body node.
-func create_body_with_type(coordinates: Vector2, type: int) -> Node: 
-	var _corpse = corpse.instantiate()
+func create_body_with_values(coordinates: Vector2, type: String, sprite: int) -> Node: 
+	var _corpse
+	if type == "h":
+		_corpse = corpse_h.instantiate()
+	else:
+		_corpse = corpse_v.instantiate()
 	_corpse.position = coordinates
-	_corpse.change_texture(type)
+	_corpse.change_texture(sprite)
 	return _corpse
 
 # Adds body to dict
-func add_body(scene: String, coordinates: Vector2, body_type: int = 0) -> void:
+func add_body(scene: String, coordinates: Vector2, type: String, sprite: int) -> void:
 	if not bodies.has(scene):
 		bodies[scene] = []
 	bodies[scene].append({
 		"coordinates": coordinates,
-		"type": body_type,
+		"type": type,
+		"sprite": sprite
 	})
 
 # Gets all bodies

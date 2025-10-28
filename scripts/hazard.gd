@@ -4,7 +4,8 @@ class_name HazardArea2D
 @export var debug = true
 
 @export var damage: int = 0;
-@onready var deathScreen = load("res://scenes/death_screen.tscn")
+@onready var deathScreen = preload("res://scenes/death_screen.tscn")
+@onready var sprite = $Sprite2D
 
 signal player_died
 
@@ -16,9 +17,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if !body.is_alive:
 			#prevent the player from dying more than once before respawning
 			return
-		print("hazard")
 		body.is_alive = false;
-		emit_signal("player_died", body)
+		# will change this later.
+		var hazard_type = "v" if get_parent().scene_file_path.ends_with("_v.tscn") else "h"
+		emit_signal("player_died", body, hazard_type)
 		
 		# spawns the death screen. 
 		# probably should move this logic to a signal that the game itself listens to in the future.

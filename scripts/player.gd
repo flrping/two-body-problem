@@ -124,13 +124,6 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
 		death_anim_triggered = true
 		
-		# may not want to hard code this in the future, but time constraints! 
-		# (player height - slightly less corpse height)
-		
-		var offset = (64 - 24) / 2 
-		var _corpse = Global.create_body(position + Vector2(0, offset))
-		has_died.emit(_corpse)
-		
 		var exists = get_tree().current_scene.get_node_or_null("Player/Camera2D/DeathScreen")
 		if exists != null:
 			exists.free()
@@ -160,10 +153,22 @@ func _on_node_added(node):
 	if node is HazardArea2D:
 		node.player_died.connect(_on_player_died)
 		
-func _on_player_died(body):
+func _on_player_died(body, hazard):
 	if main_player != null:
 		main_player.stop()
 	
 	var _stream = get_node("Death")
 	_stream.stream = death_audio[randi_range(0, death_audio.size() - 1)]
 	_stream.play()
+	
+	# may not want to hard code this in the future, but time constraints! 
+	# (player height - slightly less corpse height)
+		
+	var offset = (64 - 24) / 2
+	var type = "v" if hazard == "v" else "h"
+	var _corpse = Global.create_body(position + Vector2(0, offset), type)
+	if real_velocity.x < 0:
+		_corpse.flip_h = false
+	else:
+		_corpse.flip_h = true
+	has_died.emit(_corpse, type, hazard)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2oq08x7clect"]
+
+[ext_resource type="Script" uid="uid://bc3b135r8hp2h" path="res://scripts/dead_robot.gd" id="1_ksim2"]
+[ext_resource type="Texture2D" uid="uid://mjb1iacawhku" path="res://assets/walldeath1.png" id="2_mxgva"]
+[ext_resource type="Texture2D" uid="uid://beghpca7gokq0" path="res://assets/walldeath2.png" id="3_sf1yy"]
+[ext_resource type="Texture2D" uid="uid://c4trk7quaeoqv" path="res://assets/walldeath3.png" id="4_wyih7"]
+[ext_resource type="Texture2D" uid="uid://0u37s8egrn3p" path="res://assets/walldeath4.png" id="5_3em8q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmy4"]
+size = Vector2(16, 63)
+
+[node name="DeadRobotV" type="Sprite2D"]
+script = ExtResource("1_ksim2")
+sprites = [ExtResource("2_mxgva"), ExtResource("3_sf1yy"), ExtResource("4_wyih7"), ExtResource("5_3em8q")]
+sprite = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-10, 6.5)
+shape = SubResource("RectangleShape2D_7vmy4")

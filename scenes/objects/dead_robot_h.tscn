@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://0yxxjutc1sjg"]
+
+[ext_resource type="Script" uid="uid://bc3b135r8hp2h" path="res://scripts/dead_robot.gd" id="1_mshi0"]
+[ext_resource type="Texture2D" uid="uid://dhqowj7shvc4g" path="res://assets/Dead1.png" id="2_obd8w"]
+[ext_resource type="Texture2D" uid="uid://dvx61usbjxblb" path="res://assets/Dead2.png" id="3_7mrv5"]
+[ext_resource type="Texture2D" uid="uid://cn54m3aqqo1r" path="res://assets/Dead3.png" id="4_uqiwf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmy4"]
+size = Vector2(64, 8)
+
+[node name="DeadRobotH" type="Sprite2D"]
+script = ExtResource("1_mshi0")
+sprites = [ExtResource("2_obd8w"), ExtResource("3_7mrv5"), ExtResource("4_uqiwf")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3, 8)
+shape = SubResource("RectangleShape2D_7vmy4")
