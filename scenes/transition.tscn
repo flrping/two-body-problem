@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dhte53djtlf13" path="res://scripts/transition.gd" id="1_rerct"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kg4ax"]
 size = Vector2(1, 1)
 

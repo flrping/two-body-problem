@@ -11,7 +11,6 @@ const MAX_VELOCITY = 800
 const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
-@onready var spawn = get_tree().current_scene.get_node("Spawn")
 @onready var main_player = get_tree().current_scene.get_node_or_null("AudioStreamPlayer")
 @onready var death_audio = [
 	preload("res://assets/audio/Random6 (1).wav"),
@@ -133,7 +132,7 @@ func _input(event: InputEvent) -> void:
 		get_node("Revive").play()
 		await animation.animation_finished
 		
-		position = spawn.position
+		Global.move_and_spawn_player(self)
 		is_alive = true
 		death_anim_triggered = false
 		

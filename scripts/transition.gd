@@ -2,7 +2,8 @@
 # Use UI to change the "target" parameter to the desired scene
 
 extends Node2D
-@export var target: String = "";
+@export var target: String = ""
+@export var spawn: String = ""
 
 var targetScene: PackedScene = null;
 
@@ -12,3 +13,7 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("change_scene_to_packed", targetScene)
+	if spawn.length() > 0:
+		Global.spawn_id = spawn
+	else:
+		Global.spawn_id = ""

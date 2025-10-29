@@ -44,7 +44,7 @@ z_index = -10
 [node name="TileMapLayer" parent="background" instance=ExtResource("9_f4eqn")]
 tile_map_data = PackedByteArray("AABCAAkAAAAtAAEAAAA=")
 
-[node name="Door" type="Sprite2D" parent="background"]
+[node name="L1P2_Entrance" type="Sprite2D" parent="background"]
 position = Vector2(1, -73)
 texture = ExtResource("6_wsbiy")
 
@@ -75,13 +75,16 @@ material = SubResource("ShaderMaterial_0vwcq")
 position = Vector2(597, 154)
 texture = ExtResource("11_kwoxp")
 
-[node name="Transition" parent="." instance=ExtResource("6_wor6r")]
+[node name="L1P2_Exit" parent="." instance=ExtResource("6_wor6r")]
 position = Vector2(1286, 156)
 target = "res://scenes/levels/longwalk.tscn"
 
-[node name="Door" type="Sprite2D" parent="Transition"]
+[node name="Door" type="Sprite2D" parent="L1P2_Exit"]
 position = Vector2(-1, -17)
 texture = ExtResource("6_wsbiy")
+
+[node name="To" type="Node2D" parent="L1P2_Exit"]
+position = Vector2(-84, -3)
 
 [node name="fg\'" type="Node2D" parent="."]
 z_index = 10

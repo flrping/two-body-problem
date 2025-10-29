@@ -42,25 +42,25 @@ position = Vector2(1, -42)
 [node name="Player" parent="." instance=ExtResource("3_3w6ao")]
 position = Vector2(1, -28)
 
-[node name="Transition" parent="." instance=ExtResource("4_6tjjp")]
+[node name="L1P1_Exit" parent="." instance=ExtResource("4_6tjjp")]
 z_index = -2
 position = Vector2(619, 34)
 target = "res://scenes/levels/l1_p1_open_door_cutscene.tscn"
 
-[node name="ColorRect" type="ColorRect" parent="Transition"]
+[node name="ColorRect" type="ColorRect" parent="L1P1_Exit"]
 offset_left = -14.0
 offset_top = -30.0
 offset_right = 15.0
 offset_bottom = 29.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Transition"]
+[node name="RichTextLabel" type="RichTextLabel" parent="L1P1_Exit"]
 offset_left = -18.0
 offset_top = -48.0
 offset_right = 22.0
 offset_bottom = -8.0
 text = "door"
 
-[node name="Door" type="Sprite2D" parent="Transition"]
+[node name="Door" type="Sprite2D" parent="L1P1_Exit"]
 position = Vector2(-1, -22)
 texture = ExtResource("5_3w6ao")
 

@@ -67,19 +67,23 @@ offset_right = 500.0
 offset_bottom = 400.0
 texture = ExtResource("5_ll5f2")
 
-[node name="Transition" parent="." instance=ExtResource("8_4bgsj")]
+[node name="Longwalk_Exit" parent="." instance=ExtResource("8_4bgsj")]
 position = Vector2(1366, 162)
 target = "res://scenes/levels/walls.tscn"
 
-[node name="Door" type="Sprite2D" parent="Transition"]
+[node name="Door" type="Sprite2D" parent="Longwalk_Exit"]
 position = Vector2(1, -22)
 texture = ExtResource("8_jydje")
 
-[node name="Transition2" parent="." instance=ExtResource("8_4bgsj")]
+[node name="To" type="Node2D" parent="Longwalk_Exit"]
+position = Vector2(-59, -12)
+
+[node name="Longwalk_Entrance" parent="." instance=ExtResource("8_4bgsj")]
 position = Vector2(-66, 167)
 target = "res://scenes/levels/l1_p2.tscn"
+spawn = "L1P2_Exit"
 
-[node name="Door" type="Sprite2D" parent="Transition2"]
+[node name="Door" type="Sprite2D" parent="Longwalk_Entrance"]
 position = Vector2(3, -28)
 texture = ExtResource("8_jydje")
 

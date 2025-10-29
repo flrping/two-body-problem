@@ -4,7 +4,8 @@ extends Node
 @onready var corpse_v = preload("res://scenes/objects/dead_robot_v.tscn")
 
 # key scene, value array of coordinates
-var bodies = {}
+var bodies: Dictionary = {}
+var spawn_id: String = ""
 
 # Creates a body node.
 func create_body(coordinates: Vector2, type: String) -> Node: 
@@ -46,3 +47,17 @@ func get_bodies() -> Dictionary:
 func get_bodies_by_scene(scene: String) -> Array:
 	return bodies.get(scene, [])
 	
+func move_and_spawn_player(player: Node2D):
+	var spawn: Node2D
+	if spawn_id.length() > 0:
+		var node = get_tree().current_scene.get_node_or_null(spawn_id)
+		if node != null:
+			spawn = node
+	if spawn == null:
+		spawn = get_tree().current_scene.get_node("Spawn")
+
+	var to: Node2D = get_tree().current_scene.get_node_or_null(spawn.name + "/To")
+	if to == null:
+		player.position = spawn.position
+	else: 
+		player.position = to.global_position
