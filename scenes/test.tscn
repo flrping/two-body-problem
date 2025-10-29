@@ -5,9 +5,10 @@
 [ext_resource type="Script" uid="uid://cx66ktvql1ws" path="res://scenes/test.gd" id="1_jcd4p"]
 [ext_resource type="PackedScene" uid="uid://bjnvryfbfpnb7" path="res://scenes/platform.tscn" id="3_iyx0m"]
 [ext_resource type="PackedScene" uid="uid://11ggba2ujclo" path="res://scenes/spawn.tscn" id="5_j5jx5"]
-[ext_resource type="PackedScene" uid="uid://d1i1g48f4nhrl" path="res://scenes/objects/spike_v.tscn" id="6_at5dv"]
-[ext_resource type="PackedScene" uid="uid://casxs26f411hj" path="res://scenes/objects/spike_h.tscn" id="6_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://d1i1g48f4nhrl" path="res://scenes/objects/spike_h.tscn" id="6_at5dv"]
+[ext_resource type="PackedScene" uid="uid://casxs26f411hj" path="res://scenes/objects/spike_v.tscn" id="6_lpvoh"]
 [ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="7_at5dv"]
+
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_at5dv"]
 distance = -353.0

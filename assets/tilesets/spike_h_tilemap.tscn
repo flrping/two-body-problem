@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfvgyohqaaua8"]
+[gd_scene load_steps=4 format=3 uid="uid://bu06mvsbbmw2h"]
 
-[ext_resource type="PackedScene" uid="uid://casxs26f411hj" path="res://scenes/objects/spike_v.tscn" id="1_rdt72"]
+[ext_resource type="PackedScene" uid="uid://d1i1g48f4nhrl" path="res://scenes/objects/spike_h.tscn" id="1_br20b"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_eyrno"]
-scenes/2/scene = ExtResource("1_rdt72")
+scenes/3/scene = ExtResource("1_br20b")
 
 [sub_resource type="TileSet" id="TileSet_75vpy"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_eyrno")
 
-[node name="spike_v_tilemap" type="TileMapLayer"]
+[node name="spike_h_tilemap" type="TileMapLayer"]
 tile_set = SubResource("TileSet_75vpy")

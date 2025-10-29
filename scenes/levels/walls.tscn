@@ -21,16 +21,6 @@ position = Vector2(76, -64)
 [node name="Player" parent="." instance=ExtResource("2_ath7d")]
 position = Vector2(74, -62)
 
-[node name="spike_v_tilemap_right" parent="." instance=ExtResource("3_ath7d")]
-position = Vector2(-8, 8)
-rotation = -1.5707964
-tile_map_data = PackedByteArray("AAADACcAAAAAAAAAAQAEACcAAAAAAAAAAQAFACcAAAAAAAAAAQAGACcAAAAAAAAAAQAHACcAAAAAAAAAAQAIACcAAAAAAAAAAQAJACcAAAAAAAAAAQAKACcAAAAAAAAAAQALACcAAAAAAAAAAQAMACcAAAAAAAAAAQANACcAAAAAAAAAAQAOACcAAAAAAAAAAQA=")
-
-[node name="spike_v_tilemap_left" parent="." instance=ExtResource("3_ath7d")]
-position = Vector2(9, -8)
-rotation = 1.5707964
-tile_map_data = PackedByteArray("AADo/+H/AAAAAAAAAQDp/+H/AAAAAAAAAQDq/+H/AAAAAAAAAQDr/+H/AAAAAAAAAQDs/+H/AAAAAAAAAQDt/+H/AAAAAAAAAQDu/+H/AAAAAAAAAQDv/+H/AAAAAAAAAQDw/+H/AAAAAAAAAQDx/+H/AAAAAAAAAQDy/+H/AAAAAAAAAQDz/+H/AAAAAAAAAQD0/+H/AAAAAAAAAQD1/+H/AAAAAAAAAQD2/+H/AAAAAAAAAQA=")
-
 [node name="TileMapLayer" parent="." instance=ExtResource("5_o6eca")]
 tile_map_data = PackedByteArray("AAANAPr/AABtABYAAABDAPr/AABGABIAAAA=")
 
@@ -42,5 +32,12 @@ tile_map_data = PackedByteArray("AAD9////AQAAAAAAAAD+////AQACAAEAAAD/////AQAGAAE
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_sxm0e")
 autoplay = true
+
+[node name="spike_v_tilemap_left" parent="." instance=ExtResource("3_ath7d")]
+tile_map_data = PackedByteArray("AAAPAPv/AAAAAAAAAgAPAPr/AAAAAAAAAgAPAPn/AAAAAAAAAgAPAPj/AAAAAAAAAgAPAPf/AAAAAAAAAgAPAPb/AAAAAAAAAgAPAPX/AAAAAAAAAgAPAPT/AAAAAAAAAgAPAPP/AAAAAAAAAgAPAPL/AAAAAAAAAgA=")
+
+[node name="spike_v_tilemap_right" parent="." instance=ExtResource("3_ath7d")]
+rotation = -3.1415927
+tile_map_data = PackedByteArray("AADs/wEAAAAAAAAAAgDs/wIAAAAAAAAAAgDs/wMAAAAAAAAAAgDs/wQAAAAAAAAAAgDs/wgAAAAAAAAAAgDs/wcAAAAAAAAAAgDs/wYAAAAAAAAAAgDs/wUAAAAAAAAAAgA=")
 
 [connection signal="has_died" from="Player" to="." method="_on_player_has_died"]
