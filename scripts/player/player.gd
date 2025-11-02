@@ -5,7 +5,7 @@ var is_alive = true;
 @export var debug = false
 
 const SPEED = 380.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -600.0
 const MAX_VELOCITY = 800
 #the amount of extra velocity to remove when the jump button is not held
 const FALL_TIGHTNESS = 20;
@@ -24,7 +24,7 @@ var is_holding_jump_key = false
 var real_velocity = Vector2(0,0) #'actual' velocity before modifications are performed at the end
 var disable_inputs = false #disable inputs without enabling respawn
 
-#special event booleans
+# special event booleans
 var disable_until_landed = false #used in 1st level
 var death_anim_triggered = false #use to prevent death events from triggering more than once
 
@@ -32,6 +32,9 @@ var camera: Camera2D
 var lock_camera_y = false
 var lock_camera_x = false
 var locked_camera_offsets := Vector2(0,0)
+
+var current_state
+var states = {}
 
 signal has_died
 
@@ -43,83 +46,71 @@ var velocity_multipliers := [
 ]
 
 func _ready() -> void:
+	states = {
+		"idle": preload("res://scripts/player/states/player_idle_state.gd").new(),
+		"run": preload("res://scripts/player/states/player_run_state.gd").new(),
+		"jump": preload("res://scripts/player/states/player_jump_state.gd").new(),
+		"wall_grab": preload("res://scripts/player/states/player_wall_grab_state.gd").new(),
+		"revive": preload("res://scripts/player/states/player_revive_state.gd").new(),
+	}
+
+	for state in states.values():
+		state.player = self
+		add_child(state)
+
+	change_state("idle")
 	camera = self.get_node("Camera2D")
 	get_tree().connect("node_added", _on_node_added)
+	
+func change_state(state_name: String):
+	if not states.has(state_name):
+		push_warning("State '%s' not found" % state_name)
+		return
+
+	if current_state == states[state_name]:
+		return
+
+	if current_state:
+		current_state.exit(states[state_name])
+
+	var prev = current_state
+	current_state = states[state_name]
+	current_state.enter(prev)
 
 func _physics_process(delta: float) -> void:
-	if debug:
-		print("2bro ", position, " ", velocity, " ", real_velocity)
+	if not current_state:
+		return
+	current_state.handle_input(null)
+	current_state.physics_update(delta)
 	
-	if disable_until_landed and is_on_floor():
-		disable_until_landed = false
-		disable_inputs = false
-	
-	# Add the gravity.
 	if not is_on_floor():
-		has_jumped = true
 		real_velocity += get_gravity() * 1.1 * delta
-	elif has_jumped:
-		has_jumped = false
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and is_alive and !disable_inputs:
-		real_velocity.y = JUMP_VELOCITY
-		is_holding_jump_key = true
 		
-	if not Input.is_action_pressed("ui_accept"):
-		is_holding_jump_key = false
+	velocity = real_velocity
 	
-	if not is_holding_jump_key and velocity.y < 0: 
-		real_velocity.y += FALL_TIGHTNESS 
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	
-	if direction and is_alive and !disable_inputs:
-		#run_start animation
-		if real_velocity.x == 0:
-			run_transition_counter = 0.07
-			animation.play("run_start")
-			
-		real_velocity.x = direction * SPEED
-		
-		if run_transition_counter > 0:
-			run_transition_counter -= delta
-		else:
-			animation.play("run")
-		
-		if real_velocity.x < 0:
-			animation.flip_h = true
-		else:
-			animation.flip_h = false
-	elif is_alive:
-		real_velocity.x = move_toward(real_velocity.x, 0, SPEED)
-		animation.play("idle")
-	
-	if not is_alive:
-		real_velocity = Vector2(0,0)	
-	
+	# Apply velocity multipliers to vertical motion
 	velocity.x = real_velocity.x
 	velocity.y = real_velocity.y
-	
 	for val in velocity_multipliers:
 		if real_velocity.y >= val[0] and real_velocity.y < val[1]:
 			velocity.y *= val[2]
 			break
-		velocity.y = real_velocity.y
-	
-	velocity.y = clamp(velocity.y, -1 * MAX_VELOCITY, MAX_VELOCITY )
-	
+
+	velocity.y = clamp(velocity.y, -1.0 * MAX_VELOCITY, MAX_VELOCITY)
 	move_and_slide()
 	
-	#do any post-movement camera adjustments
+	# post-movement camera locks
 	if lock_camera_y:
 		camera.position.y = locked_camera_offsets.y - position.y
 	if lock_camera_x:
 		camera.position.x = locked_camera_offsets.x - position.x
+		
+	# landing gate used by scripted events
+	if disable_until_landed and is_on_floor():
+		disable_until_landed = false
+		disable_inputs = false
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
 		death_anim_triggered = true
 		
@@ -152,7 +143,7 @@ func _on_node_added(node):
 	if node is HazardArea2D:
 		node.player_died.connect(_on_player_died)
 		
-func _on_player_died(body, hazard):
+func _on_player_died(_body, hazard):
 	if main_player != null:
 		main_player.stop()
 	
