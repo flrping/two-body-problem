@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfpo13km488ss"]
+
+[ext_resource type="Texture2D" uid="uid://dfq3aljloqiga" path="res://assets/level-components/ElectricityHazard.png" id="1_1i1v8"]
+[ext_resource type="Script" uid="uid://qlvol0fmp4bk" path="res://scripts/electricity.gd" id="2_kp2ro"]
+[ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="2_sg0cm"]
+[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/death_screen.tscn" id="3_sg0cm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i1v8"]
+atlas = ExtResource("1_1i1v8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg0cm"]
+atlas = ExtResource("1_1i1v8")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp2ro"]
+atlas = ExtResource("1_1i1v8")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oshlr"]
+atlas = ExtResource("1_1i1v8")
+region = Rect2(544, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyjrt"]
+atlas = ExtResource("1_1i1v8")
+region = Rect2(704, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_004y4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i1v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg0cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp2ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oshlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyjrt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_453mv"]
+size = Vector2(32, 32)
+
+[node name="Electricity" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_004y4")
+frame_progress = 0.63193786
+script = ExtResource("2_kp2ro")
+
+[node name="HazardArea2D" type="Area2D" parent="."]
+script = ExtResource("2_sg0cm")
+hazard_name = "electricity"
+death_screen_scene = ExtResource("3_sg0cm")
+metadata/_custom_type_script = "uid://b2kuqh4v7e7u5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea2D"]
+shape = SubResource("RectangleShape2D_453mv")

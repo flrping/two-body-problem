@@ -56,11 +56,16 @@ func _ready() -> void:
 	for state in states.values():
 		state.player = self
 		add_child(state)
-
+		
 	change_state("idle")
 	camera = self.get_node("Camera2D")
-	get_tree().connect("node_added", _on_node_added)
 	
+	get_tree().connect("node_added", _on_node_added)
+	await get_tree().process_frame
+	for node in get_tree().get_nodes_in_group("Hazards"):
+		node.player_died.connect(_on_player_died)
+
+
 func change_state(state_name: String):
 	if not states.has(state_name):
 		push_warning("State '%s' not found" % state_name)
@@ -141,21 +146,19 @@ func _on_node_added(node):
 	if node is HazardArea2D:
 		node.player_died.connect(_on_player_died)
 		
-func _on_player_died(_body, hazard):
+func _on_player_died(_body, hazard: String):
 	MusicPlayer.change_song(preload("res://assets/audio/tracks/death.wav"))
 	
 	var _stream = get_node("Death")
-	_stream.stream = death_audio[randi_range(0, death_audio.size() - 1)]
-	_stream.play()
+	if death_audio.size() > 0:
+		_stream.stream = death_audio[randi_range(0, death_audio.size() - 1)]
+		_stream.play()
 	
-	# may not want to hard code this in the future, but time constraints! 
-	# (player height - slightly less corpse height)
-		
+	if hazard.to_lower().contains("electricity"):
+		return
+	
 	var offset = (64 - 24) / 2
-	var type = "v" if hazard == "v" else "h"
+	var type = "v" if hazard.ends_with("_v") else "h"
 	var _corpse = Global.create_body(position + Vector2(0, offset), type)
-	if real_velocity.x < 0:
-		_corpse.flip_h = false
-	else:
-		_corpse.flip_h = true
+	_corpse.flip_h = real_velocity.x >= 0
 	has_died.emit(_corpse, type, hazard)

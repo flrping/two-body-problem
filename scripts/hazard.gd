@@ -1,32 +1,34 @@
 extends Area2D
 class_name HazardArea2D
 
-@export var debug = true
+signal player_died(body: Node2D, hazard_name: String)
 
-@export var damage: int = 0;
-@onready var deathScreen = preload("res://scenes/death_screen.tscn")
-@onready var sprite = $Sprite2D
-
-signal player_died
+@export var hazard_name: String = "UnknownHazard"
+@export var death_screen_scene: PackedScene
 
 func _ready() -> void:
-	body_entered.connect(_on_area_2d_body_entered)
+	add_to_group("Hazards")
+	connect("body_entered", Callable(self, "_on_body_entered"))
+
+func _on_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("Player"):
+		return
 	
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		if !body.is_alive:
-			#prevent the player from dying more than once before respawning
-			return
-		body.is_alive = false;
-		# will change this later.
-		var hazard_type = "v" if get_parent().scene_file_path.ends_with("_v.tscn") else "h"
-		emit_signal("player_died", body, hazard_type)
-		
-		# spawns the death screen. 
-		# probably should move this logic to a signal that the game itself listens to in the future.
-		var exists = get_tree().current_scene.get_node_or_null("Player/Camera2D/DeathScreen")
-		if exists == null:
-			var _deathScreen = deathScreen.instantiate()
-			_deathScreen.name = "DeathScreen"
-			get_tree().current_scene.get_node("Player/Camera2D").position_smoothing_enabled = false
-			get_tree().current_scene.get_node("Player/Camera2D").add_child(_deathScreen)
+	if not body.is_alive:
+		return
+	
+	body.is_alive = false
+	emit_signal("player_died", body, hazard_name)
+	
+	_spawn_death_screen(body)
+
+func _spawn_death_screen(player: Node2D) -> void:
+	var cam := player.get_node_or_null("Camera2D")
+	if cam == null:
+		return
+
+	cam.position_smoothing_enabled = false
+	if cam.get_node_or_null("DeathScreen") == null and death_screen_scene:
+		var ds = death_screen_scene.instantiate()
+		ds.name = "DeathScreen"
+		cam.add_child(ds)

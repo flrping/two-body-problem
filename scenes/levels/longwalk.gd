@@ -12,7 +12,7 @@ func _ready() -> void:
 	var body_list = Global.get_bodies_by_scene(get_tree().current_scene.name)
 	for body_data in body_list:
 		var corpse = Global.create_body_with_values(body_data.coordinates, body_data.type, body_data.sprite)
-		get_tree().current_scene.add_child(corpse)
+		get_tree().current_scene.call_deferred("add_child", corpse)
 	
 	Global.move_and_spawn_player(self.get_node("Player"))
 

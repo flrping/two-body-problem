@@ -16,4 +16,4 @@ func _ready() -> void:
 
 func _on_player_has_died(corpse, type, _hazard) -> void:
 	Global.add_body(get_tree().current_scene.name, corpse.position, type, corpse.sprite)
-	get_tree().current_scene.add_child(corpse)
+	get_tree().current_scene.call_deferred("add_child", corpse)

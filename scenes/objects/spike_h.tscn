@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1i1g48f4nhrl"]
+[gd_scene load_steps=6 format=3 uid="uid://d1i1g48f4nhrl"]
 
 [ext_resource type="Texture2D" uid="uid://dpvjlnrheo77m" path="res://assets/level-components/tileset1-export.png" id="1_08k6d"]
 [ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="2_mfe2t"]
+[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/death_screen.tscn" id="3_rnk2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52ep5"]
 size = Vector2(32, 10)
@@ -21,8 +22,10 @@ region_filter_clip_enabled = true
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_52ep5")
 
-[node name="HazardArea2D" type="Area2D" parent="."]
+[node name="HazardArea2D" type="Area2D" parent="." groups=["Hazards"]]
 script = ExtResource("2_mfe2t")
+hazard_name = "spike_h"
+death_screen_scene = ExtResource("3_rnk2v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea2D"]
 position = Vector2(0, 9.5)

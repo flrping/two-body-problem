@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp4qxvmm3s07n"]
+[gd_scene load_steps=4 format=3 uid="uid://bp4qxvmm3s07n"]
 
 [ext_resource type="Texture2D" uid="uid://dpvjlnrheo77m" path="res://assets/level-components/tileset1-export.png" id="1_11q47"]
 [ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="2_lkdr0"]
+[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/death_screen.tscn" id="3_lkdr0"]
 
 [node name="SpikeC" type="Sprite2D"]
 texture = ExtResource("1_11q47")
@@ -16,6 +17,8 @@ polygon = PackedVector2Array(-16, 16, -16, -16, 16, -16, 16, -7, -7, -7, -7, 16)
 
 [node name="HazardArea2D" type="Area2D" parent="."]
 script = ExtResource("2_lkdr0")
+hazard_name = "spike_c"
+death_screen_scene = ExtResource("3_lkdr0")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HazardArea2D"]
 polygon = PackedVector2Array(16, -16, -16, -16, -16, 16, -5, 16, -5, -5, 16, -5)
