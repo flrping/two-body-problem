@@ -11,7 +11,6 @@ const MAX_VELOCITY = 800
 const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
-@onready var main_player = get_tree().current_scene.get_node_or_null("AudioStreamPlayer")
 @onready var death_audio = [
 	preload("res://assets/audio/Random6 (1).wav"),
 	preload("res://assets/audio/Random6 (2).wav"),
@@ -127,8 +126,7 @@ func _input(_event: InputEvent) -> void:
 		is_alive = true
 		death_anim_triggered = false
 		
-		if main_player != null:
-			main_player.play()
+		MusicPlayer.change_song(preload("res://assets/audio/tracks/area 1.wav"))
 
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
@@ -144,8 +142,7 @@ func _on_node_added(node):
 		node.player_died.connect(_on_player_died)
 		
 func _on_player_died(_body, hazard):
-	if main_player != null:
-		main_player.stop()
+	MusicPlayer.change_song(preload("res://assets/audio/tracks/death.wav"))
 	
 	var _stream = get_node("Death")
 	_stream.stream = death_audio[randi_range(0, death_audio.size() - 1)]

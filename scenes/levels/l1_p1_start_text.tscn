@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://drs08q565sqr0"]
+[gd_scene load_steps=3 format=3 uid="uid://drs08q565sqr0"]
 
 [ext_resource type="Script" uid="uid://b164tay68yl1p" path="res://scripts/start_text.gd" id="1_t404h"]
 [ext_resource type="FontFile" uid="uid://byxax6tlb31sx" path="res://assets/fonts/pixelify/PixelifySans-VariableFont_wght.ttf" id="2_cv6so"]
-[ext_resource type="AudioStream" uid="uid://bkrw04nxxa887" path="res://assets/audio/soft-brown-noise-299934.mp3" id="3_cv6so"]
 
 [node name="L1P1StartText" type="Node2D"]
 script = ExtResource("1_t404h")
@@ -26,9 +25,3 @@ I however… am dying.
 
 Go to the core... Increase…. Power."
 horizontal_alignment = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_cv6so")
-volume_db = -32.0
-autoplay = true
-parameters/looping = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://12500eik7y3k"]
+[gd_scene load_steps=20 format=4 uid="uid://12500eik7y3k"]
 
 [ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="1_34jrj"]
 [ext_resource type="Script" uid="uid://b65tglwv83g6q" path="res://scenes/levels/l_1_p_1.gd" id="1_aod5m"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dt3anowi1fbkx" path="res://scenes/player.tscn" id="3_3w6ao"]
 [ext_resource type="PackedScene" uid="uid://drf0ttkbavooc" path="res://scenes/transition.tscn" id="4_6tjjp"]
 [ext_resource type="Texture2D" uid="uid://c6c2vkiuv2rry" path="res://assets/level-components/door.png" id="5_3w6ao"]
-[ext_resource type="AudioStream" uid="uid://bmecrvjhfwnfc" path="res://assets/audio/tracks/area 1.wav" id="6_8jfjx"]
 [ext_resource type="PackedScene" uid="uid://t88xl1o0qpsc" path="res://assets/tilesets/area_junk_tilemap.tscn" id="8_uu6ox"]
 [ext_resource type="Shader" uid="uid://bns1o5ngcp8mn" path="res://assets/shaders/l1p1tubes.gdshader" id="9_32lhq"]
 [ext_resource type="Script" uid="uid://dlg1xo1hamwtt" path="res://scripts/blinklights_generic.gd" id="10_sg4qk"]
@@ -114,7 +113,3 @@ repeat_size = Vector2(500, 0)
 
 [node name="TileMapLayer" parent="foreground/leds" instance=ExtResource("16_e0ecu")]
 tile_map_data = PackedByteArray("AAACAAEAAAADAAAAAAAIAAAAAAALAAAAAAAPAAAAAAAYAAAAAAASAAAAAAAjAAAAAAAKAAAAAAApAAAAAAA=")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_8jfjx")
-autoplay = true

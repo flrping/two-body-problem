@@ -1,16 +1,16 @@
 [gd_scene load_steps=25 format=4 uid="uid://c4ectc1i5nrii"]
 
+[ext_resource type="Script" uid="uid://wvkpafgytxw1" path="res://scripts/menu/title.gd" id="1_bk47l"]
 [ext_resource type="Texture2D" uid="uid://clkbf51takd7f" path="res://assets/backgrounds/longwalk/foregroundd8.png" id="1_jd0r5"]
 [ext_resource type="Texture2D" uid="uid://b7vw3gh5vp8dw" path="res://assets/backgrounds/longwalk/nearbackground7.png" id="2_jn0s6"]
 [ext_resource type="Texture2D" uid="uid://tp1q3d0rhbny" path="res://assets/backgrounds/longwalk/foregroundd7.png" id="3_tawcd"]
 [ext_resource type="PackedScene" uid="uid://i0eal1ome5m0" path="res://assets/tilesets/levelparts1.tscn" id="4_jwf5l"]
 [ext_resource type="FontFile" uid="uid://byxax6tlb31sx" path="res://assets/fonts/pixelify/PixelifySans-VariableFont_wght.ttf" id="5_jn0s6"]
-[ext_resource type="Script" uid="uid://c6bctu4mf26i6" path="res://scripts/play_button.gd" id="6_sfhh4"]
+[ext_resource type="Script" uid="uid://c4xi6tnxbffh0" path="res://scripts/play_button.gd" id="6_sfhh4"]
 [ext_resource type="Texture2D" uid="uid://bci87y7y5ilx" path="res://assets/2broidle.png" id="6_tawcd"]
-[ext_resource type="Script" uid="uid://bniwe001kttw6" path="res://scripts/quit_button.gd" id="7_5pq1v"]
-[ext_resource type="Script" uid="uid://wsje1viplhlk" path="res://scripts/credits_button.gd" id="7_fs8pb"]
-[ext_resource type="Script" uid="uid://bt2jj6dfqnowf" path="res://scripts/menu_sprite.gd" id="7_jwf5l"]
-[ext_resource type="AudioStream" uid="uid://kon7xdaifg" path="res://assets/audio/tracks/title.wav" id="11_bk47l"]
+[ext_resource type="Script" uid="uid://hf2rkanupusi" path="res://scripts/quit_button.gd" id="7_5pq1v"]
+[ext_resource type="Script" uid="uid://dqgfwp06u2whw" path="res://scripts/credits_button.gd" id="7_fs8pb"]
+[ext_resource type="Script" uid="uid://k5ftl8k5b2jm" path="res://scripts/menu_sprite.gd" id="7_jwf5l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwf5l"]
 atlas = ExtResource("6_tawcd")
@@ -107,6 +107,7 @@ animations = [{
 [node name="Title" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_bk47l")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -188,10 +189,6 @@ position = Vector2(355, 280)
 sprite_frames = SubResource("SpriteFrames_4w54g")
 flip_h = true
 script = ExtResource("7_jwf5l")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_bk47l")
-autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_play_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_credits_pressed"]
