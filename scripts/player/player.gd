@@ -5,10 +5,10 @@ var is_alive = true;
 @export var debug = false
 
 const SPEED = 380.0
-const JUMP_VELOCITY = -600.0
+const JUMP_VELOCITY = -650.0
 const MAX_VELOCITY = 800
 #the amount of extra velocity to remove when the jump button is not held
-const FALL_TIGHTNESS = 20;
+const FALL_TIGHTNESS = 10;
 
 @onready var animation = $AnimatedSprite2D
 @onready var death_audio = [
@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	current_state.physics_update(delta)
 	
 	if not is_on_floor():
-		real_velocity += get_gravity() * 1.1 * delta
+		real_velocity += get_gravity() *  delta
 		
 	velocity = real_velocity
 	
