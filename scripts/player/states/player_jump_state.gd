@@ -3,15 +3,24 @@ extends PlayerState
 class_name JumpState
 
 func enter(_prev_state):
-	# initial takeoff only when coming from floor
-	player.animation.play("jump")
-	if player.is_on_floor() and player.is_alive and not player.disable_inputs:
-		player.real_velocity.y = player.JUMP_VELOCITY
-		player.is_holding_jump_key = true
+	if player.animation.animation != "jump":
+		player.animation.play("jump")
+	
+	if player.is_alive and not player.disable_inputs:
+		if player.is_on_floor():
+			player.real_velocity.y = player.JUMP_VELOCITY
+			player.is_holding_jump_key = true
+		# alters the jump state a bit to accomodate
+		# an arc automatically off a wall jump
+		elif _prev_state is WallGrabState:
+			player.animation.flip_h = -sign(_prev_state.wall_direction)
+			player.real_velocity.y = player.WALL_JUMP_VELOCITY
+			player.real_velocity.x = -_prev_state.wall_direction * player.SPEED
+			player.is_holding_jump_key = true
+	
 	player.has_jumped = true
 
 func handle_input(_event):
-	# jump hold/cut
 	if not Input.is_action_pressed("ui_accept"):
 		player.is_holding_jump_key = false
 
@@ -26,11 +35,27 @@ func physics_update(delta):
 		player.real_velocity.x = direction * player.SPEED
 		player.animation.flip_h = player.real_velocity.x < 0.0
 		
-	# variable jump height (cut upward velocity when key released)
+	# jump to wall grab
+	# must be facing and going toward a grabbable object to hook on
+	for i in range(player.get_slide_collision_count()):
+		var collision = player.get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider.is_in_group("WallGrab"):
+			var normal = collision.get_normal()
+			var pushing_toward_wall = (normal.x > 0 and direction < 0) or (normal.x < 0 and direction > 0)
+			if pushing_toward_wall and player.real_velocity.y > 0 and abs(normal.y) < 0.5:
+				var wall_grab_state = player.states["wall_grab"]
+				wall_grab_state.wall_direction = sign(direction)
+				player.change_state("wall_grab")
+				return
+				
 	if not player.is_holding_jump_key and player.velocity.y < 0.0:
 		player.real_velocity.y += player.FALL_TIGHTNESS
+	
+	# transition to fall when velocity flips
+	if player.real_velocity.y > 0.0 and not player.is_on_floor():
+		player.change_state("fall")
 		
-	# land -> idle/run
 	if player.is_on_floor():
 		player.has_jumped = false
 		if direction != 0.0:

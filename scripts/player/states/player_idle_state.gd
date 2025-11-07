@@ -1,4 +1,5 @@
 extends PlayerState
+
 class_name IdleState
 
 func enter(_prev_state):
@@ -19,10 +20,10 @@ func handle_input(_event):
 		player.change_state("run")
 
 func physics_update(delta):
-	# airborne transition
-	if not player.is_on_floor():
+	# airborne transitions
+	if not player.is_on_floor() and player.velocity.y < 0:
 		player.change_state("jump")
 		return
-
-	# smooth friction toward stop
-	player.real_velocity.x = move_toward(player.real_velocity.x, 0.0, player.SPEED * delta * 5)
+	if not player.is_on_floor() and player.velocity.y > 0:
+		player.change_state("fall")
+		return

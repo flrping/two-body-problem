@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dt3anowi1fbkx"]
+[gd_scene load_steps=47 format=3 uid="uid://dt3anowi1fbkx"]
 
 [ext_resource type="Script" uid="uid://bv04ggu6sv6je" path="res://scripts/player/player.gd" id="1_xo3ru"]
 [ext_resource type="Texture2D" uid="uid://bci87y7y5ilx" path="res://assets/2broidle.png" id="2_g2els"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tu1jlm0ajgea" path="res://assets/2broruntransition.png" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://ccdi4fvwtnoog" path="res://scripts/player/player_beep.gd" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dirno1lrua334" path="res://assets/audio/glitch-fx-transitions-7-373373.mp3" id="7_fjrip"]
+[ext_resource type="Texture2D" uid="uid://cxfnt35gdjeds" path="res://assets/walljump.png" id="7_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -137,6 +138,18 @@ region = Rect2(462, 0, 77, 80)
 atlas = ExtResource("3_qhqgy")
 region = Rect2(539, 0, 77, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_md1ol"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(0, 0, 75, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj30b"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(75, 0, 75, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hax0n"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(150, 0, 75, 79)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
 "frames": [{
@@ -262,6 +275,20 @@ animations = [{
 "loop": true,
 "name": &"run_start",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md1ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj30b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hax0n")
+}],
+"loop": false,
+"name": &"wall_grab",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdrta"]
@@ -281,13 +308,11 @@ offset_bottom = 32.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"run"
+animation = &"wall_grab"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_fdrta")
-debug_color = Color(0.78710437, 0.9557368, 0.9999998, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -50)

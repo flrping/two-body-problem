@@ -6,9 +6,9 @@ var is_alive = true;
 
 const SPEED = 380.0
 const JUMP_VELOCITY = -650.0
+const WALL_JUMP_VELOCITY = -550.0
 const MAX_VELOCITY = 800
-#the amount of extra velocity to remove when the jump button is not held
-const FALL_TIGHTNESS = 10;
+const FALL_TIGHTNESS = 20;
 
 @onready var animation = $AnimatedSprite2D
 @onready var death_audio = [
@@ -51,6 +51,8 @@ func _ready() -> void:
 		"jump": preload("res://scripts/player/states/player_jump_state.gd").new(),
 		"wall_grab": preload("res://scripts/player/states/player_wall_grab_state.gd").new(),
 		"revive": preload("res://scripts/player/states/player_revive_state.gd").new(),
+		"fall": preload("res://scripts/player/states/player_fall_state.gd").new(),
+		"dead": preload("res://scripts/player/states/player_dead_state.gd").new()
 	}
 
 	for state in states.values():
@@ -60,11 +62,9 @@ func _ready() -> void:
 	change_state("idle")
 	camera = self.get_node("Camera2D")
 	
-	get_tree().connect("node_added", _on_node_added)
 	await get_tree().process_frame
 	for node in get_tree().get_nodes_in_group("Hazards"):
 		node.player_died.connect(_on_player_died)
-
 
 func change_state(state_name: String):
 	if not states.has(state_name):
@@ -87,20 +87,7 @@ func _physics_process(delta: float) -> void:
 	current_state.handle_input(null)
 	current_state.physics_update(delta)
 	
-	if not is_on_floor():
-		real_velocity += get_gravity() *  delta
-		
-	velocity = real_velocity
-	
-	# Apply velocity multipliers to vertical motion
-	velocity.x = real_velocity.x
-	velocity.y = real_velocity.y
-	for val in velocity_multipliers:
-		if real_velocity.y >= val[0] and real_velocity.y < val[1]:
-			velocity.y *= val[2]
-			break
-
-	velocity.y = clamp(velocity.y, -1.0 * MAX_VELOCITY, MAX_VELOCITY)
+	apply_movement(delta)
 	move_and_slide()
 	
 	# post-movement camera locks
@@ -113,25 +100,22 @@ func _physics_process(delta: float) -> void:
 	if disable_until_landed and is_on_floor():
 		disable_until_landed = false
 		disable_inputs = false
+		
+func apply_movement(delta: float):
+	if not is_on_floor():
+		real_velocity += get_gravity() * delta
+		
+	velocity = real_velocity
+	
+	# Apply velocity multipliers to vertical motion
+	velocity.x = real_velocity.x
+	velocity.y = real_velocity.y
+	for val in velocity_multipliers:
+		if real_velocity.y >= val[0] and real_velocity.y < val[1]:
+			velocity.y *= val[2]
+			break
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("ui_text_backspace") and not is_alive and not death_anim_triggered:
-		death_anim_triggered = true
-		
-		var exists = get_tree().current_scene.get_node_or_null("Player/Camera2D/DeathScreen")
-		if exists != null:
-			exists.free()
-		
-		camera.position_smoothing_enabled = true
-		animation.play("reanimate")
-		get_node("Revive").play()
-		await animation.animation_finished
-		
-		Global.move_and_spawn_player(self)
-		is_alive = true
-		death_anim_triggered = false
-		
-		MusicPlayer.change_song(preload("res://assets/audio/tracks/area 1.wav"))
+	velocity.y = clamp(velocity.y, -1.0 * MAX_VELOCITY, MAX_VELOCITY)
 
 func set_locked_camera(x, y, enable_x: bool, enable_y: bool):
 	lock_camera_x = enable_x
@@ -147,18 +131,28 @@ func _on_node_added(node):
 		node.player_died.connect(_on_player_died)
 		
 func _on_player_died(_body, hazard: String):
-	MusicPlayer.change_song(preload("res://assets/audio/tracks/death.wav"))
+	change_state("dead")
 	
-	var _stream = get_node("Death")
-	if death_audio.size() > 0:
-		_stream.stream = death_audio[randi_range(0, death_audio.size() - 1)]
-		_stream.play()
-	
+	# electricity hazards do not spawn bodies
 	if hazard.to_lower().contains("electricity"):
 		return
 	
-	var offset = (64 - 24) / 2
-	var type = "v" if hazard.ends_with("_v") else "h"
-	var _corpse = Global.create_body(position + Vector2(0, offset), type)
-	_corpse.flip_h = real_velocity.x >= 0
-	has_died.emit(_corpse, type, hazard)
+	var offset := (64 - 24) * 0.5
+	var is_vertical := hazard.ends_with("_v")
+	var corpse_type := "v" if hazard.ends_with("_v") else "h"
+	
+	var _corpse
+	if is_vertical:
+		_corpse = Global.create_body(position, corpse_type)
+	else:
+		# only apply the offset on horizontal bodies.
+		_corpse = Global.create_body(position + Vector2(0, offset), corpse_type)
+	
+	# the corpse sprite/collider should match the flip of the player
+	var flip = !animation.flip_h
+	_corpse.flip_h = flip
+	var collider = _corpse.get_node_or_null("StaticBody2D/CollisionShape2D")
+	if collider != null and flip:
+		collider.position.x = -collider.position.x
+		
+	has_died.emit(_corpse, corpse_type, hazard)
