@@ -9,10 +9,11 @@
 size = Vector2(64, 8)
 
 [node name="DeadRobotH" type="Sprite2D"]
+texture = ExtResource("2_obd8w")
 script = ExtResource("1_mshi0")
 sprites = [ExtResource("2_obd8w"), ExtResource("3_7mrv5"), ExtResource("4_uqiwf")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["WallGrab"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-3, 8)

@@ -7,15 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://0u37s8egrn3p" path="res://assets/walldeath4.png" id="5_3em8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vmy4"]
-size = Vector2(16, 63)
+size = Vector2(8, 63)
 
 [node name="DeadRobotV" type="Sprite2D"]
+texture = ExtResource("3_sf1yy")
+region_rect = Rect2(0, 0, 35, 79)
 script = ExtResource("1_ksim2")
 sprites = [ExtResource("2_mxgva"), ExtResource("3_sf1yy"), ExtResource("4_wyih7"), ExtResource("5_3em8q")]
 sprite = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["WallGrab"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-10, 6.5)
+position = Vector2(-14, 6.5)
 shape = SubResource("RectangleShape2D_7vmy4")
