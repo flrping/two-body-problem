@@ -3,10 +3,14 @@ extends PlayerState
 class_name RunState
 
 func enter(_prev_state):
+	player.animation.offset.y = -8
 	if absf(player.real_velocity.x) <= 0.001:
 		player.run_transition_counter = 0.07
 		player.animation.play("run_start")
-
+		
+func exit(next_state: PlayerState):
+	player.animation.offset.y = 0
+	
 func handle_input(_event):
 	if player.disable_inputs or not player.is_alive:
 		return
