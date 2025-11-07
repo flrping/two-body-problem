@@ -3,6 +3,9 @@ extends Node
 @onready var corpse_h = preload("res://scenes/objects/dead_robot_h.tscn")
 @onready var corpse_v = preload("res://scenes/objects/dead_robot_v.tscn")
 
+# custom events/triggers
+var has_died_once = false
+
 # key scene, value array of coordinates
 var bodies: Dictionary = {}
 var spawn_id: String = ""

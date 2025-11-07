@@ -2,6 +2,9 @@
 # Use UI to change the "target" parameter to the desired scene
 
 extends Node2D
+
+class_name Transition
+
 @export var target: String = ""
 @export var spawn: String = ""
 
