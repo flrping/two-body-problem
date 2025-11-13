@@ -11,35 +11,41 @@ var bodies: Dictionary = {}
 var spawn_id: String = ""
 
 # Creates a body node.
-func create_body(coordinates: Vector2, type: String) -> Node: 
+func create_body(position: Vector2, type: String) -> Node: 
 	var _corpse
-	if type == "h":
+	if type == "DeadRobotH":
 		_corpse = corpse_h.instantiate()
 	else:
 		_corpse = corpse_v.instantiate()
-	_corpse.position = coordinates
-	print(type)
+	_corpse.position = position
+	_corpse.texture = _corpse.sprites[_corpse.sprite]
 	return _corpse
 
 # Creates a body node.
-func create_body_with_values(coordinates: Vector2, type: String, sprite: int) -> Node: 
+func create_body_with_values(position: Vector2, type: String, sprite: int, flipped: bool) -> Node: 
 	var _corpse
-	if type == "h":
+	if type == "DeadRobotH":
 		_corpse = corpse_h.instantiate()
 	else:
 		_corpse = corpse_v.instantiate()
-	_corpse.position = coordinates
-	_corpse.change_texture(sprite)
+	_corpse.sprite = sprite
+	_corpse.texture = _corpse.sprites[sprite]
+	_corpse.position = position
+	_corpse.flip_h = flipped
+	var collider = _corpse.get_node_or_null("StaticBody2D/CollisionShape2D")
+	if collider != null and flipped:
+		collider.position.x = -collider.position.x
 	return _corpse
 
 # Adds body to dict
-func add_body(scene: String, coordinates: Vector2, type: String, sprite: int) -> void:
+func add_body(scene: String, robot: DeadRobot) -> void:
 	if not bodies.has(scene):
 		bodies[scene] = []
 	bodies[scene].append({
-		"coordinates": coordinates,
-		"type": type,
-		"sprite": sprite
+		"coordinates": robot.position,
+		"type": robot.name,
+		"sprite": robot.sprite,
+		"flipped": robot.flip_h
 	})
 
 # Gets all bodies

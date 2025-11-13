@@ -10,7 +10,6 @@
 size = Vector2(8, 63)
 
 [node name="DeadRobotV" type="Sprite2D"]
-texture = ExtResource("3_sf1yy")
 region_rect = Rect2(0, 0, 35, 79)
 script = ExtResource("1_ksim2")
 sprites = [ExtResource("2_mxgva"), ExtResource("3_sf1yy"), ExtResource("4_wyih7"), ExtResource("5_3em8q")]

@@ -141,7 +141,7 @@ func _on_player_died(_body, hazard: String):
 	
 	var offset := (64 - 24) * 0.5
 	var is_vertical := hazard.ends_with("_v")
-	var corpse_type := "v" if hazard.ends_with("_v") else "h"
+	var corpse_type := "DeadRobotV" if hazard.ends_with("_v") else "DeadRobotH"
 	
 	var _corpse
 	if is_vertical:
@@ -157,4 +157,4 @@ func _on_player_died(_body, hazard: String):
 	if collider != null and flip:
 		collider.position.x = -collider.position.x
 		
-	has_died.emit(_corpse, corpse_type, hazard)
+	has_died.emit(_corpse)

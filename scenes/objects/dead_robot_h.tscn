@@ -9,7 +9,6 @@
 size = Vector2(64, 8)
 
 [node name="DeadRobotH" type="Sprite2D"]
-texture = ExtResource("2_obd8w")
 script = ExtResource("1_mshi0")
 sprites = [ExtResource("2_obd8w"), ExtResource("3_7mrv5"), ExtResource("4_uqiwf")]
 
