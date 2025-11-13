@@ -19,6 +19,7 @@ const FALL_TIGHTNESS = 20;
 
 var run_transition_counter = 0;
 var has_jumped = false
+var has_dashed = false
 var is_holding_jump_key = false
 var real_velocity = Vector2(0,0) #'actual' velocity before modifications are performed at the end
 var disable_inputs = false #disable inputs without enabling respawn
@@ -52,7 +53,8 @@ func _ready() -> void:
 		"wall_grab": preload("res://scripts/player/states/player_wall_grab_state.gd").new(),
 		"revive": preload("res://scripts/player/states/player_revive_state.gd").new(),
 		"fall": preload("res://scripts/player/states/player_fall_state.gd").new(),
-		"dead": preload("res://scripts/player/states/player_dead_state.gd").new()
+		"dead": preload("res://scripts/player/states/player_dead_state.gd").new(),
+		"dash": preload("res://scripts/player/states/player_dash_state.gd").new()
 	}
 
 	for state in states.values():

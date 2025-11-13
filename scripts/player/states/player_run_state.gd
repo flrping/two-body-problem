@@ -4,6 +4,7 @@ class_name RunState
 
 func enter(_prev_state):
 	player.animation.offset.y = -8
+	player.has_dashed = false
 	if absf(player.real_velocity.x) <= 0.001:
 		player.run_transition_counter = 0.07
 		player.animation.play("run_start")
@@ -14,8 +15,12 @@ func exit(next_state: PlayerState):
 func handle_input(_event):
 	if player.disable_inputs or not player.is_alive:
 		return
+		
 	if Input.is_action_just_pressed("ui_accept") and player.is_on_floor():
 		player.change_state("jump")
+		
+	if Input.is_action_just_pressed("Dash") and not player.has_dashed:
+		player.change_state("dash")
 
 func physics_update(delta):
 	var direction := 0.0

@@ -2,6 +2,8 @@ extends PlayerState
 
 class_name JumpState
 
+var direction := 0.0
+
 func enter(_prev_state):
 	if player.animation.animation != "jump":
 		player.animation.play("jump")
@@ -23,12 +25,15 @@ func enter(_prev_state):
 func handle_input(_event):
 	if not Input.is_action_pressed("ui_accept"):
 		player.is_holding_jump_key = false
+		
+	if Input.is_action_just_pressed("Dash") and direction != 0.0 and not player.has_dashed:
+		player.change_state("dash")
+		return
 
 func physics_update(delta):
 	player.real_velocity += player.get_gravity() * 1.1 * delta
 	
 	# horizontal air control
-	var direction := 0.0
 	if player.is_alive and not player.disable_inputs:
 		direction = Input.get_axis("ui_left", "ui_right")
 	if direction != 0.0:

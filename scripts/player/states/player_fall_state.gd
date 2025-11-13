@@ -14,6 +14,14 @@ func handle_input(_event: InputEvent) -> void:
 	if direction != 0.0:
 		player.real_velocity.x = direction * player.SPEED
 		player.animation.flip_h = direction < 0.0
+		
+	if Input.is_action_just_pressed("ui_accept") and player.is_on_floor():
+		player.change_state("jump")
+		return
+		
+	if Input.is_action_just_pressed("Dash") and direction != 0.0 and not player.has_dashed:
+		player.change_state("dash")
+		return
 
 func physics_update(_delta: float) -> void:
 	var direction = Input.get_axis("ui_left", "ui_right")
