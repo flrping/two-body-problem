@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://dt3anowi1fbkx"]
+[gd_scene load_steps=49 format=3 uid="uid://dt3anowi1fbkx"]
 
 [ext_resource type="Script" uid="uid://bv04ggu6sv6je" path="res://scripts/player/player.gd" id="1_xo3ru"]
 [ext_resource type="Texture2D" uid="uid://bci87y7y5ilx" path="res://assets/2broidle.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://d0xkb70v4bhbj" path="res://assets/2brodash.png" id="2_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://bd4ul6gdvpr1a" path="res://assets/2bro_run.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cin8ono1x2mxt" path="res://assets/reanimate.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://cc8g0r3edheok" path="res://assets/2brojump.png" id="3_smehm"]
@@ -9,6 +10,10 @@
 [ext_resource type="Script" uid="uid://ccdi4fvwtnoog" path="res://scripts/player/player_beep.gd" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dirno1lrua334" path="res://assets/audio/glitch-fx-transitions-7-373373.mp3" id="7_fjrip"]
 [ext_resource type="Texture2D" uid="uid://cxfnt35gdjeds" path="res://assets/walljump.png" id="7_ur7pv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
+atlas = ExtResource("2_y4r1p")
+region = Rect2(7, 9, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -152,6 +157,14 @@ region = Rect2(150, 0, 75, 79)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4otl")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qhqgy")
@@ -308,7 +321,7 @@ offset_bottom = 32.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"wall_grab"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
