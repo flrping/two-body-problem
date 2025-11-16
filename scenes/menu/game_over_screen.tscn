@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://co4uorhwyftk8"]
+
+[ext_resource type="Script" uid="uid://dqtn1lcdxuvn0" path="res://scripts/menu/game_over_screen.gd" id="1_8smoi"]
+[ext_resource type="Texture2D" uid="uid://da4cn4dsxx2gm" path="res://assets/backgrounds/afterlifebackground.png" id="1_ndg0r"]
+[ext_resource type="FontFile" uid="uid://byxax6tlb31sx" path="res://assets/fonts/pixelify/PixelifySans-VariableFont_wght.ttf" id="2_q5i70"]
+[ext_resource type="Texture2D" uid="uid://cn54m3aqqo1r" path="res://assets/Dead3.png" id="3_bllgf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ns25"]
+font = ExtResource("2_q5i70")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gwety"]
+font = ExtResource("2_q5i70")
+font_color = Color(0.44203168, 0.44203168, 0.44203168, 1)
+shadow_size = 0
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8smoi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -231.0
+offset_top = -9.0
+offset_right = 717.0
+offset_bottom = 414.0
+texture = ExtResource("1_ndg0r")
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 93.0
+offset_right = 409.0
+offset_bottom = 120.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_7ns25")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Reanimate" type="Label" parent="."]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 304.0
+offset_right = 388.0
+offset_bottom = 327.0
+text = "Press Backspace to Start Over"
+label_settings = SubResource("LabelSettings_gwety")
+horizontal_alignment = 1
+
+[node name="Sprite2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 182.0
+offset_right = 293.0
+offset_bottom = 222.0
+texture = ExtResource("3_bllgf")

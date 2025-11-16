@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxi1veotlmv27"]
 
-[ext_resource type="Script" uid="uid://bk0i1tkoxof78" path="res://scripts/cutscene.gd" id="1_edmg7"]
+[ext_resource type="Script" uid="uid://eqy23ugo4d7f" path="res://scripts/cutscene.gd" id="1_edmg7"]
 
 [node name="Cutscene" type="VideoStreamPlayer"]
 anchors_preset = 15

@@ -3,6 +3,8 @@ extends Node
 @onready var corpse_h = preload("res://scenes/objects/dead_robot_h.tscn")
 @onready var corpse_v = preload("res://scenes/objects/dead_robot_v.tscn")
 
+var lives := 50
+
 # custom events/triggers
 var has_died_once = false
 
@@ -10,6 +12,13 @@ var has_died_once = false
 var bodies: Dictionary = {}
 var spawn_id: String = ""
 
+# Sets all the default values
+func init():
+	lives = 50
+	has_died_once = false
+	bodies = {}
+	spawn_id = ""
+	
 # Creates a body node.
 func create_body(position: Vector2, type: String) -> Node: 
 	var _corpse

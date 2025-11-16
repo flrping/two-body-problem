@@ -14,20 +14,10 @@ font = ExtResource("2_mqh5l")
 font_color = Color(0.44203168, 0.44203168, 0.44203168, 1)
 shadow_size = 0
 
-[node name="DeathScreen" type="Control"]
-z_index = 100
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -50.0
-offset_right = -500.0
-offset_bottom = -450.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DeathScreen" type="CanvasLayer"]
+layer = 10
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
 offset_left = -231.0
 offset_top = -9.0
 offset_right = 717.0
@@ -35,7 +25,6 @@ offset_bottom = 414.0
 texture = ExtResource("1_dwo6e")
 
 [node name="Message" type="Label" parent="."]
-layout_mode = 0
 offset_left = 104.0
 offset_top = 81.0
 offset_right = 409.0
@@ -46,7 +35,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Reanimate" type="Label" parent="."]
-layout_mode = 0
 offset_left = 137.0
 offset_top = 305.0
 offset_right = 379.0
@@ -56,7 +44,6 @@ label_settings = SubResource("LabelSettings_gwety")
 horizontal_alignment = 1
 
 [node name="Sprite" type="TextureRect" parent="."]
-layout_mode = 0
 offset_left = 217.0
 offset_top = 179.0
 offset_right = 291.0
@@ -65,7 +52,6 @@ texture = ExtResource("3_mqh5l")
 script = ExtResource("4_7ns25")
 
 [node name="Mainframe" type="TextureRect" parent="."]
-layout_mode = 0
 offset_left = 144.0
 offset_top = 74.0
 offset_right = 391.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dt3anowi1fbkx"]
+[gd_scene load_steps=51 format=3 uid="uid://dt3anowi1fbkx"]
 
 [ext_resource type="Script" uid="uid://bv04ggu6sv6je" path="res://scripts/player/player.gd" id="1_xo3ru"]
 [ext_resource type="Texture2D" uid="uid://bci87y7y5ilx" path="res://assets/2broidle.png" id="2_g2els"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://ccdi4fvwtnoog" path="res://scripts/player/player_beep.gd" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dirno1lrua334" path="res://assets/audio/glitch-fx-transitions-7-373373.mp3" id="7_fjrip"]
 [ext_resource type="Texture2D" uid="uid://cxfnt35gdjeds" path="res://assets/walljump.png" id="7_ur7pv"]
+[ext_resource type="Script" uid="uid://cl65avqo5dg00" path="res://scripts/player/camera_2d.gd" id="9_3v2ag"]
+[ext_resource type="PackedScene" uid="uid://bj6oelceuce4e" path="res://scenes/ui/lives.tscn" id="11_d2wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
 atlas = ExtResource("2_y4r1p")
@@ -329,8 +331,7 @@ shape = SubResource("CapsuleShape2D_fdrta")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -50)
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
+script = ExtResource("9_3v2ag")
 
 [node name="Beep" type="AudioStreamPlayer" parent="."]
 volume_db = -17.5
@@ -346,5 +347,13 @@ volume_db = -10.0
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Lives" parent="UI" instance=ExtResource("11_d2wvv")]
+offset_left = 12.0
+offset_top = 14.0
+offset_right = -488.0
+offset_bottom = -386.0
 
 [connection signal="timeout" from="Beep/Timer" to="Beep" method="_on_timer_timeout"]

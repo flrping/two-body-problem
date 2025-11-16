@@ -26,8 +26,12 @@ func _spawn_death_screen(player: Node2D) -> void:
 	var cam := player.get_node_or_null("Camera2D")
 	if cam == null:
 		return
-
-	cam.position_smoothing_enabled = false
+		
+	if Global.lives <= 0:
+		var game_over = preload("res://scenes/menu/game_over_screen.tscn")
+		get_tree().call_deferred("change_scene_to_packed", game_over)
+		return
+		
 	if cam.get_node_or_null("DeathScreen") == null and death_screen_scene:
 		var ds = death_screen_scene.instantiate()
 		ds.name = "DeathScreen"

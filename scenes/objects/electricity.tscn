@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dfq3aljloqiga" path="res://assets/level-components/ElectricityHazard.png" id="1_1i1v8"]
 [ext_resource type="Script" uid="uid://qlvol0fmp4bk" path="res://scripts/electricity.gd" id="2_kp2ro"]
 [ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="2_sg0cm"]
-[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/death_screen.tscn" id="3_sg0cm"]
+[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/ui/death_screen.tscn" id="3_sg0cm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1i1v8"]
 atlas = ExtResource("1_1i1v8")

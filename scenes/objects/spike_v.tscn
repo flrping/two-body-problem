@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dpvjlnrheo77m" path="res://assets/level-components/tileset1-export.png" id="1_hxc4e"]
 [ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="2_vqfuf"]
-[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/death_screen.tscn" id="3_vqfuf"]
+[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/ui/death_screen.tscn" id="3_vqfuf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52ep5"]
 size = Vector2(10, 32)

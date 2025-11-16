@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 var is_alive = true;
 
 @export var debug = false
@@ -63,6 +65,7 @@ func _ready() -> void:
 		
 	change_state("idle")
 	camera = self.get_node("Camera2D")
+	camera.player = self
 	
 	await get_tree().process_frame
 	for node in get_tree().get_nodes_in_group("Hazards"):
@@ -133,6 +136,11 @@ func _on_node_added(node):
 		node.player_died.connect(_on_player_died)
 		
 func _on_player_died(_body, hazard: String):
+	Global.lives -= 1
+	var lives_ui := get_node_or_null("UI/Lives/Amount")
+	if lives_ui != null:
+		lives_ui.text = str(Global.lives)
+	
 	change_state("dead")
 	
 	# electricity hazards do not spawn bodies

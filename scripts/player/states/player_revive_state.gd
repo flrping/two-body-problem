@@ -9,7 +9,6 @@ func enter(_prev_state: PlayerState) -> void:
 	if exists != null:
 		exists.free()
 		
-	player.camera.position_smoothing_enabled = true
 	player.animation.play("reanimate")
 	player.get_node("Revive").play()
 	await player.animation.animation_finished
