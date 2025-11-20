@@ -42,10 +42,13 @@ use_texture_padding = false
 4:0/0 = 0
 48:0/size_in_atlas = Vector2i(2, 2)
 48:0/0 = 0
+48:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 50:0/size_in_atlas = Vector2i(2, 2)
 50:0/0 = 0
+50:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 52:0/size_in_atlas = Vector2i(2, 2)
 52:0/0 = 0
+52:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_hqpon"]
 tile_size = Vector2i(32, 32)
