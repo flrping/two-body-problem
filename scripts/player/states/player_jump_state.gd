@@ -45,14 +45,13 @@ func physics_update(delta):
 	for i in range(player.get_slide_collision_count()):
 		var collision = player.get_slide_collision(i)
 		var collider = collision.get_collider()
-		if collider.is_in_group("WallGrab"):
-			var normal = collision.get_normal()
-			var pushing_toward_wall = (normal.x > 0 and direction < 0) or (normal.x < 0 and direction > 0)
-			if pushing_toward_wall and player.real_velocity.y > 0 and abs(normal.y) < 0.5:
-				var wall_grab_state = player.states["wall_grab"]
-				wall_grab_state.wall_direction = sign(direction)
-				player.change_state("wall_grab")
-				return
+		var normal = collision.get_normal()
+		var pushing_toward_wall = (normal.x > 0 and direction < 0) or (normal.x < 0 and direction > 0)
+		if pushing_toward_wall and player.real_velocity.y > 0 and abs(normal.y) < 0.5:
+			var wall_grab_state = player.states["wall_grab"]
+			wall_grab_state.wall_direction = sign(direction)
+			player.change_state("wall_grab")
+			return
 				
 	if not player.is_holding_jump_key and player.velocity.y < 0.0:
 		player.real_velocity.y += player.FALL_TIGHTNESS
