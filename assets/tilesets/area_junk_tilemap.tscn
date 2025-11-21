@@ -7,7 +7,6 @@ texture = ExtResource("1_g72a5")
 margins = Vector2i(3, 0)
 texture_region_size = Vector2i(4, 4)
 70:8/0 = 0
-37:79/0 = 0
 16:40/size_in_atlas = Vector2i(20, 20)
 16:40/0 = 0
 38:40/size_in_atlas = Vector2i(7, 7)
