@@ -59,6 +59,7 @@ position = Vector2(-934, 693)
 
 [node name="PlatformGroup1" type="Node2D" parent="."]
 script = ExtResource("7_yp81y")
+trigger = "player"
 
 [node name="Platform" parent="PlatformGroup1" instance=ExtResource("8_bctpg")]
 position = Vector2(303, -224)
@@ -72,7 +73,6 @@ position = Vector2(749, -224)
 
 [node name="PlatformGroup2" type="Node2D" parent="."]
 script = ExtResource("7_yp81y")
-speed = 25.0
 
 [node name="Platform" parent="PlatformGroup2" instance=ExtResource("8_bctpg")]
 position = Vector2(303, 32)
@@ -85,8 +85,8 @@ position = Vector2(303, 32)
 position = Vector2(749, 32)
 
 [node name="PlatformGroup3" type="Node2D" parent="."]
+position = Vector2(70, 0)
 script = ExtResource("7_yp81y")
-speed = 25.0
 
 [node name="Platform" parent="PlatformGroup3" instance=ExtResource("8_bctpg")]
 position = Vector2(939, -224)
@@ -100,11 +100,10 @@ position = Vector2(939, 277)
 
 [node name="PlatformGroup4" type="Node2D" parent="."]
 script = ExtResource("7_yp81y")
-speed = 25.0
 
 [node name="Platform" parent="PlatformGroup4" instance=ExtResource("8_bctpg")]
 position = Vector2(1429, 380)
-width = 7
+width = 9
 
 [node name="Point_1" type="Node2D" parent="PlatformGroup4"]
 position = Vector2(1429, 380)
@@ -114,7 +113,6 @@ position = Vector2(1429, -119)
 
 [node name="PlatformGroup5" type="Node2D" parent="."]
 script = ExtResource("7_yp81y")
-speed = 25.0
 
 [node name="Platform" parent="PlatformGroup5" instance=ExtResource("8_bctpg")]
 position = Vector2(1837, -49)
@@ -128,17 +126,17 @@ position = Vector2(1837, 469)
 
 [node name="PlatformGroup6" type="Node2D" parent="."]
 script = ExtResource("7_yp81y")
-speed = 25.0
+trigger = "player"
 
 [node name="Platform" parent="PlatformGroup6" instance=ExtResource("8_bctpg")]
-position = Vector2(2613, 583)
+position = Vector2(2584, 583)
 width = 7
 
 [node name="Point_1" type="Node2D" parent="PlatformGroup6"]
-position = Vector2(2613, 583)
+position = Vector2(2584, 583)
 
 [node name="Point_2" type="Node2D" parent="PlatformGroup6"]
-position = Vector2(4078, 583)
+position = Vector2(4075, 583)
 
 [node name="L5P2_Entrance" parent="." instance=ExtResource("10_a72bx")]
 position = Vector2(-1004, 699)

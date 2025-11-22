@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6pc2qyjqgjh2"]
+[gd_scene load_steps=5 format=3 uid="uid://c6pc2qyjqgjh2"]
 
 [ext_resource type="Script" uid="uid://bou3jkditgxa6" path="res://scripts/platform.gd" id="1_dotdq"]
 [ext_resource type="Texture2D" uid="uid://cwhc8hhagpuds" path="res://assets/testing/tileset1-export.png" id="2_8dp8w"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dp8w"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcgad"]
 size = Vector2(36, 36)
 
-[node name="Platform" type="StaticBody2D"]
+[node name="Platform" type="AnimatableBody2D"]
 script = ExtResource("1_dotdq")
 texture = ExtResource("2_8dp8w")
 atlas_x = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8dp8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gcgad")

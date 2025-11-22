@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends AnimatableBody2D
 
 class_name Platform
 
@@ -10,6 +10,7 @@ class_name Platform
 const TILE_SIZE := 32
 
 @onready var collision := $CollisionShape2D
+@onready var area_collision := $Area2D/CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +33,10 @@ func _ready() -> void:
 	
 	var rect := collision.shape as RectangleShape2D
 	rect.size = Vector2(width * TILE_SIZE, height * TILE_SIZE)
-	
 	collision.position = rect.size / 2
-	print(rect.size)
+	
+	var area_rect := area_collision.shape as RectangleShape2D
+	area_rect.size = Vector2(width * TILE_SIZE, height * TILE_SIZE)
+	var padding = Vector2(4, 4)
+	area_rect.size = rect.size + padding * 2
+	area_collision.position = (rect.size / 2) - padding

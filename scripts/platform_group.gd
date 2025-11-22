@@ -2,18 +2,22 @@ extends Node2D
 
 class_name PlatformGroup
 
-# pixels per second
-@export var speed := 30.0
+@export var speed := 100.0
 @export var current_node = null
 @export var nodes: Array[Node2D] = []
 @export var index = 0
 @export var mode := "circular"
+@export var trigger := "auto"
+
+var triggers = ["auto", "player"]
 var modes = ["circular", "one-shot", "back-forth"]
+
+var activated = false
 var direction := 1 
 
 @onready var platform = $Platform as Platform
+@onready var platform_area = $Platform/Area2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for node in get_children():
 		if node.name.begins_with("Point_"):
@@ -22,10 +26,28 @@ func _ready() -> void:
 	nodes.sort()
 	if nodes.size() > 0 and nodes.size() > index:
 		current_node = nodes[index]
+		
+	if trigger not in triggers:
+		print("Invalid trigger, using auto")
+		trigger = "auto"
+	
+	if mode not in modes:
+		print("Invalid mode, using circular")
+		mode = "circular"
+	
+	if trigger == "auto":
+		activated = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if current_node == null:
+		return
+		
+	var bodies = platform_area.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("Player") and trigger == "player":
+			activated = true
+	
+	if not activated:
 		return
 		
 	var target_pos = nodes[index].global_position
