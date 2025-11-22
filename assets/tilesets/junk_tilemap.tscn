@@ -26,5 +26,5 @@ texture = ExtResource("1_080js")
 [sub_resource type="TileSet" id="TileSet_caeyc"]
 sources/0 = SubResource("TileSetAtlasSource_brlju")
 
-[node name="TileMapLayer" type="TileMapLayer"]
+[node name="Junk" type="TileMapLayer"]
 tile_set = SubResource("TileSet_caeyc")

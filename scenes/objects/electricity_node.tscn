@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdm433b0sq7a"]
+
+[ext_resource type="Texture2D" uid="uid://dfq3aljloqiga" path="res://assets/level-components/ElectricityHazard.png" id="1_5xesx"]
+[ext_resource type="Script" uid="uid://qlvol0fmp4bk" path="res://scripts/electricity.gd" id="2_bkp7q"]
+[ext_resource type="Script" uid="uid://b2kuqh4v7e7u5" path="res://scripts/hazard.gd" id="3_ge6sf"]
+[ext_resource type="PackedScene" uid="uid://bu8dcus8nm4on" path="res://scenes/ui/death_screen.tscn" id="4_akcqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xesx"]
+atlas = ExtResource("1_5xesx")
+region = Rect2(2, 0, 31, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkp7q"]
+atlas = ExtResource("1_5xesx")
+region = Rect2(343, 0, 31, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge6sf"]
+atlas = ExtResource("1_5xesx")
+region = Rect2(684, 0, 31, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_004y4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xesx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkp7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge6sf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_453mv"]
+size = Vector2(32, 32)
+
+[node name="ElectricityNode" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_004y4")
+frame_progress = 0.5883978
+script = ExtResource("2_bkp7q")
+
+[node name="HazardArea2D" type="Area2D" parent="."]
+script = ExtResource("3_ge6sf")
+hazard_name = "electricity"
+death_screen_scene = ExtResource("4_akcqq")
+metadata/_custom_type_script = "uid://b2kuqh4v7e7u5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea2D"]
+shape = SubResource("RectangleShape2D_453mv")

@@ -42,5 +42,5 @@ texture_region_size = Vector2i(4, 4)
 [sub_resource type="TileSet" id="TileSet_dnv42"]
 sources/0 = SubResource("TileSetAtlasSource_tm4v7")
 
-[node name="TileMapLayer" type="TileMapLayer"]
+[node name="AreaJunk" type="TileMapLayer"]
 tile_set = SubResource("TileSet_dnv42")

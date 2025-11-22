@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://31djs4kkrugl"]
+
+[ext_resource type="PackedScene" uid="uid://cdm433b0sq7a" path="res://scenes/objects/electricity_node.tscn" id="1_01115"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_fs3yw"]
+scenes/1/scene = ExtResource("1_01115")
+
+[sub_resource type="TileSet" id="TileSet_5vm12"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_fs3yw")
+
+[node name="ElectricityNodeTilemap" type="TileMapLayer"]
+tile_set = SubResource("TileSet_5vm12")
